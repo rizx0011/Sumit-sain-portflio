@@ -1,0 +1,15 @@
+{
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true
+  },
+  "typescript.tsdk": "sumit-sain-portfolio-main/sumit-sain-portfolio-main/node_modules/typescript/lib",
+  "eslint.workingDirectories": [
+    "./sumit-sain-portfolio-main/sumit-sain-portfolio-main"
+  ],
+  "css.lint.unknownAtRules": "ignore"
+}

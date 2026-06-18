@@ -1,0 +1,65 @@
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/contact-modal/index.tsx
+  43:107  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  44:86   error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/about-me/index.tsx
+  23:97  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/education/index.tsx
+   8:56   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  47:56   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  47:68   error  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  75:115  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  75:237  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/experience/index.tsx
+   6:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:58  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  34:70  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:79  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:91  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/featured-work/index.tsx
+   8:52  error    Unexpected any. Specify a different type         @typescript-eslint/no-explicit-any
+  40:51  error    Unexpected any. Specify a different type         @typescript-eslint/no-explicit-any
+  41:35  warning  'isRightCol' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/hero-section/index.tsx
+   3:8   warning  'Link' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  56:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  63:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/project-overview/index.tsx
+   3:8   warning  'Link' is defined but never used                                 @typescript-eslint/no-unused-vars
+   7:52  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  30:39  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  40:77  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  40:89  error    Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/quote-section/index.tsx
+   2:8    warning  'Image' is defined but never used                                @typescript-eslint/no-unused-vars
+  36:25   error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  36:132  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/home/tech-stack/index.tsx
+  63:33  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/layout/floating-dock.tsx
+  15:10  warning  'cn' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/layout/footer/index.tsx
+  1:8  warning  'Link' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/components/layout/header/announcementBar.tsx
+  1:8  warning  'Image' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/page.tsx
+  1:8  warning  'Divider' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/master/Downloads/Sumit Kumar rizx/src/app/tools/page.tsx
+    5:8   warning  'Image' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  128:45  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+✖ 34 problems (21 errors, 13 warnings)
+
