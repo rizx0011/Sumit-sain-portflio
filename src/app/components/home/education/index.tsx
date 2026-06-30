@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { GraduationCap, ArrowRight } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { GraduationCap } from "lucide-react";
 import { EducationItem } from "@/types";
 
 const Education = () => {

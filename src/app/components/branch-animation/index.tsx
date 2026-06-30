@@ -6,16 +6,15 @@ import React, { useEffect, useRef, useState } from "react";
 // Whisper-thin, delicate detailed fractal branches that grow along the page gutters.
 // ─────────────────────────────────────────────────────────────────────────────
 
+const r = Math.PI / 12;
+const { random: o } = Math;
+const l = 30;
+const d = 4;
+
 export default function BranchAnimation() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [size, setSize] = useState({ width: 0, height: 0 });
     const animRef = useRef<number>(0);
-
-    const n = Math.PI;
-    const r = Math.PI / 12;
-    const { random: o } = Math;
-    const l = 30;
-    const d = 4;
 
     useEffect(() => {
         let lastWidth = window.innerWidth;
