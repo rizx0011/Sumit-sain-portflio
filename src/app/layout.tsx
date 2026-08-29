@@ -40,6 +40,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="color-scheme" content="light dark" />
+        <meta name="google-site-verification" content="kGKw-i68QyW00twKGit7MnXUUMfr93RiAzQZSkvZ0Pc" />
       </head>
       <body
         suppressHydrationWarning
