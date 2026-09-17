@@ -43,7 +43,7 @@ const HeroSection = () => {
                         <div className="w-full h-52 sm:h-64 md:h-[270px] rounded-2xl overflow-hidden shadow-sm">
                             <Image
                                 src="/images/hero-sec/rizx.gif"
-                                alt="banner"
+                                alt="Sumit Sain - Full Stack Developer & WordPress Expert portfolio banner"
                                 width={780}
                                 height={270}
                                 className="w-full object-cover object-top"
@@ -66,7 +66,7 @@ const HeroSection = () => {
                                 />
                                 <Image
                                     src={profileImages[nextIdx]}
-                                    alt=""
+                                    alt="Sumit Sain Full Stack Developer profile photo"
                                     fill
                                     sizes="120px"
                                     className="object-cover absolute inset-0"

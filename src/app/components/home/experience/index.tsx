@@ -61,7 +61,7 @@ const Experience = () => {
                                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                                             <div className="flex items-center gap-4">
                                                 <div className="w-10 h-10 rounded-lg overflow-hidden border border-primary/5 bg-primary/5 flex items-center justify-center p-1.5">
-                                                    <Image src={item.icon} alt="company-logo" width={28} height={28} className="object-contain" />
+                                                    <Image src={item.icon} alt={item.company ? `${item.company} company logo` : "Company logo"} width={28} height={28} className="object-contain" />
                                                 </div>
                                                 <div className="flex flex-col gap-0.5">
                                                     <h3 className="text-base sm:text-xl font-semibold text-primary">{item.role}</h3>
