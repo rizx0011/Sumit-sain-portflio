@@ -47,7 +47,7 @@ const FeaturedWork = () => {
                                     <Link href={"/"} className="overflow-hidden">
                                         <Image
                                             src={value?.image}
-                                            alt={value?.name ? `${value.name} - Web Project by Sumit Sain` : "Web project by Sumit Sain Full Stack Developer"}
+                                            alt={value?.title ? `${value.title} - Web Project by Sumit Sain` : "Web project by Sumit Sain Full Stack Developer"}
                                             width={490}
                                             height={300}
                                             className="w-full h-full group-hover:scale-105 transition-all duration-300 ease-in-out"
