@@ -50,14 +50,16 @@ const educationData = [
 
 const projectOverview = {
     caseStudies: [
-        { name: "Wellnest", url: "#" },
-        { name: "ScoutHire", url: "#" },
+        { name: "Aurelis Salon", url: "https://aurleis-saloon.vercel.app/" },
+        { name: "Pankaj Kumar", url: "https://pankajkumarr.vercel.app/" },
     ],
     sideProjects: [
-        { name: "Portfolio", url: "https://kuldeepsilu.vercel.app/", image: "/images/portfolio_mockup.png" },
-        { name: "E-Commerce", url: "https://localkart.app/", image: "/images/ecommerce_mockup.png" },
-        { name: "WordPress", url: "https://staragriseeds.com/", image: "/images/wordpress_mockup.png" },
-        { name: "SaaS Dashboard", url: "https://localkart.app/", image: "/images/saas_mockup.png" },
+        { name: "Aurelis Grooming Studio", url: "https://aurleis-saloon.vercel.app/", image: "/images/feature-work/aurleis-saloon.png" },
+        { name: "Pankaj Kumar Portfolio", url: "https://pankajkumarr.vercel.app/", image: "/images/feature-work/pankaj-kumar.png" },
+        { name: "Café Ivory Lounge", url: "https://cafeivory.vercel.app/", image: "/images/feature-work/cafe-ivory.png" },
+        { name: "Anurag Bhati Portfolio", url: "https://anuragbhati.vercel.app/", image: "/images/feature-work/anurag-bhati.png" },
+        { name: "Crazy Coffee", url: "https://crazy-cafe-demo.vercel.app/", image: "/images/feature-work/crazy-cafe.png" },
+        { name: "Hindu Mythology AI", url: "https://hindu-mythology-ai.vercel.app/", image: "/images/feature-work/hindu-mythology.png" },
     ]
 };
 

@@ -17,7 +17,7 @@ const AboutMe = () => {
         <section id="about">
             <div className="container">
                 <div className="bg-[url('/images/about-me/about-me-bg.svg')] bg-cover bg-center bg-no-repeat">
-                    <div className="flex flex-col gap-9 sm:gap-12 max-w-3xl mx-auto px-4 sm:px-7 py-11 md:py-20">
+                    <div className="flex flex-col gap-9 sm:gap-12 max-w-3xl mx-auto px-4 sm:px-7 py-0 md:py-0">
                         <div className="flex flex-col gap-5">
                             <p className="font-jost uppercase tracking-[3px] text-xs sm:text-sm font-semibold text-secondary/60">About Me</p>
                             <h2 className="font-instrument text-2xl sm:text-3xl md:text-4xl lg:text-[40px] leading-tight text-primary">Hi, I&apos;m <span className="font-serif italic font-medium text-primary">Sumit Sain</span>, a passionate BCA 4th Semester Student, Full Stack Developer, and WordPress Expert.</h2>

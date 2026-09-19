@@ -71,7 +71,7 @@ body {
 
 @layer base {
   section {
-    @apply py-16 md:py-20 relative overflow-hidden;
+    @apply py-6 md:py-10 relative overflow-hidden;
   }
 
   h1 {

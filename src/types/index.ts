@@ -30,4 +30,7 @@ export interface FeaturedWorkItem {
     description: string;
     roles: string[];
     image: string;
+    url?: string;
+    category?: string;
+    techStack?: string[];
 }

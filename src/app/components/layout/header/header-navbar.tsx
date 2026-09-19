@@ -151,7 +151,7 @@ const HeaderNavbar = () => {
     return (
         <>
             {/* ════════════ NAVBAR ════════════ */}
-            <div className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur-xl border-b border-primary/5 shadow-[0_1px_0_0_rgba(0,0,0,0.05)] transition-shadow duration-300">
+            <div className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-primary/5 shadow-[0_1px_0_0_rgba(0,0,0,0.05)] transition-shadow duration-300">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-[auto_1fr_auto] items-center h-[64px] sm:h-[72px] px-4 sm:px-7 gap-4">
 

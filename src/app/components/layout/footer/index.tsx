@@ -50,7 +50,7 @@ const Footer = () => {
                 <div className="flex flex-col items-center gap-5 px-4 sm:px-7 py-10 md:py-12">
 
                     {/* Social icons row */}
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-3">
                         {socials.map((s) => (
                             <a
                                 key={s.label}
@@ -58,7 +58,7 @@ const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={s.label}
-                                className="p-2.5 rounded-xl text-secondary/60 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                                className="p-2.5 rounded-xl text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 [&>svg]:!w-6 [&>svg]:!h-6"
                             >
                                 {s.icon}
                             </a>
@@ -66,7 +66,7 @@ const Footer = () => {
                     </div>
 
                     {/* Copyright */}
-                    <p className="font-jost text-xs text-secondary/50 text-center tracking-wide">
+                    <p className="font-jost text-[13px] font-medium text-secondary/90 text-center tracking-wide mt-2">
                         © 2016–2026 Sumit Sain. All rights reserved.
                     </p>
 

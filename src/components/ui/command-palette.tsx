@@ -126,47 +126,69 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         // Projects
         {
-            id: "project-portfolio",
-            title: "Portfolio Website",
-            description: "kuldeepsilu.vercel.app (Live Project)",
+            id: "project-aurleis",
+            title: "Aurelis Boys Grooming Studio",
+            description: "aurleis-saloon.vercel.app (Live Project)",
             category: "Projects",
             icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
                 onClose();
-                window.open("https://kuldeepsilu.vercel.app/", "_blank");
+                window.open("https://aurleis-saloon.vercel.app/", "_blank");
             }
         },
         {
-            id: "project-regenseeds",
-            title: "Regenseeds Website",
-            description: "regenseeds.in (WordPress Project)",
+            id: "project-pankaj",
+            title: "Pankaj Kumar Portfolio",
+            description: "pankajkumarr.vercel.app (Live Project)",
             category: "Projects",
             icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
                 onClose();
-                window.open("https://regenseeds.in/", "_blank");
+                window.open("https://pankajkumarr.vercel.app/", "_blank");
             }
         },
         {
-            id: "project-shainacafe",
-            title: "Shaina Cafe Website",
-            description: "shainacafe-rawatsar.com (Cafe Project)",
+            id: "project-cafeivory",
+            title: "Café Ivory Lounge",
+            description: "cafeivory.vercel.app (Live Project)",
             category: "Projects",
             icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
                 onClose();
-                window.open("https://shainacafe-rawatsar.com/", "_blank");
+                window.open("https://cafeivory.vercel.app/", "_blank");
             }
         },
         {
-            id: "project-headman",
-            title: "The Headman Salon Website",
-            description: "theheadmansalon.com (Salon Project)",
+            id: "project-anurag",
+            title: "Anurag Bhati Portfolio",
+            description: "anuragbhati.vercel.app (Live Project)",
             category: "Projects",
             icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
                 onClose();
-                window.open("https://www.theheadmansalon.com/", "_blank");
+                window.open("https://anuragbhati.vercel.app/", "_blank");
+            }
+        },
+        {
+            id: "project-crazycafe",
+            title: "Crazy Coffee Experience",
+            description: "crazy-cafe-demo.vercel.app (Live Project)",
+            category: "Projects",
+            icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
+            action: () => {
+                onClose();
+                window.open("https://crazy-cafe-demo.vercel.app/", "_blank");
+            }
+        },
+        {
+            id: "project-hindu-mythology",
+            title: "Hindu Mythology AI",
+            description: "hindu-mythology-ai.vercel.app (AI Project)",
+            category: "Projects",
+            icon: <ExternalLink className="w-4.5 h-4.5 text-secondary" />,
+            action: () => {
+                onClose();
+                window.open("https://hindu-mythology-ai.vercel.app/", "_blank");
             }
         },
         // Actions

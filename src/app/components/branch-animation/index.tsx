@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 // ─────────────────────────────────────────────────────────────────────────────
 // Samir Sain's exact production fractal branch canvas drawing engine
 // Whisper-thin, delicate detailed fractal branches that grow along the page gutters.
+// Optimized for 120+ FPS by using a fixed viewport canvas.
 // ─────────────────────────────────────────────────────────────────────────────
 
 const r = Math.PI / 12;
@@ -18,17 +19,15 @@ export default function BranchAnimation() {
 
     useEffect(() => {
         let lastWidth = window.innerWidth;
-        let lastHeight = typeof document !== "undefined"
-            ? (document.documentElement.scrollHeight || document.body.scrollHeight || window.innerHeight)
-            : window.innerHeight;
+        let lastHeight = window.innerHeight;
 
         setSize({ width: lastWidth, height: lastHeight });
 
         const handleResize = () => {
             const w = window.innerWidth;
-            const h = document.documentElement.scrollHeight || document.body.scrollHeight || window.innerHeight;
+            const h = window.innerHeight;
             
-            if (Math.abs(w - lastWidth) > 50 || Math.abs(h - lastHeight) > 150) {
+            if (Math.abs(w - lastWidth) > 50 || Math.abs(h - lastHeight) > 50) {
                 lastWidth = w;
                 lastHeight = h;
                 setSize({ width: w, height: h });
@@ -37,16 +36,8 @@ export default function BranchAnimation() {
 
         window.addEventListener("resize", handleResize);
 
-        const resizeObserver = new ResizeObserver(() => {
-            handleResize();
-        });
-        if (document.body) {
-            resizeObserver.observe(document.body);
-        }
-
         return () => {
             window.removeEventListener("resize", handleResize);
-            resizeObserver.disconnect();
         };
     }, []);
 
@@ -110,7 +101,7 @@ export default function BranchAnimation() {
         };
 
         let lastFrameTime = performance.now();
-        const frameInterval = 1000 / 30; // 30 FPS throttle
+        const frameInterval = 1000 / 60; // Upgraded to 60/120 FPS pacing
 
         const animate = () => {
             if (performance.now() - lastFrameTime < frameInterval) {
@@ -144,9 +135,9 @@ export default function BranchAnimation() {
 
             queue = [];
 
-            // Seed branching roots down the left and right gutters of the full page height
-            const spacing = width < 768 ? 320 : 240;
-            for (let y = 100; y < height - 100; y += spacing) {
+            // Seed branching roots down the left and right gutters of the viewport
+            const spacing = width < 768 ? 200 : 150;
+            for (let y = 50; y < height - 50; y += spacing) {
                 const offsetY = y + (o() - 0.5) * 60;
 
                 // Left side growing rightward
@@ -181,10 +172,9 @@ export default function BranchAnimation() {
 
     return (
         <div 
-            className="absolute inset-x-0 top-0 pointer-events-none z-[-1] overflow-hidden" 
-            style={{ height: size.height }}
+            className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" 
         >
-            <canvas ref={canvasRef} />
+            <canvas ref={canvasRef} className="w-full h-full" />
         </div>
     );
 }

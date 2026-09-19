@@ -259,7 +259,7 @@ const ToolsPage = () => {
                 ))}
             </div>
 
-            <div className="w-full max-w-6xl mx-auto px-4 sm:px-7 pb-32 flex flex-col gap-16">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-7 pb-16 flex flex-col gap-16">
                 {categories.filter(c => c.title === activeTab).map((category) => (
                     <div key={category.title} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <div className="flex items-center justify-between mb-8 border-b border-primary/5 pb-4">
