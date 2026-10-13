@@ -9,23 +9,57 @@ interface ContactModalProps {
 }
 
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
     const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     if (!isOpen) return null;
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setSubmitting(true);
-        // Simulate network request
-        setTimeout(() => {
-            setSubmitting(false);
-            setSubmitted(true);
+        setErrorMessage("");
+
+        const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+        if (!formId) {
+            // Simulated fallback
             setTimeout(() => {
-                setSubmitted(false);
-                onClose();
-            }, 3000);
-        }, 1500);
+                setSubmitting(false);
+                setSubmitted(true);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    onClose();
+                }, 3000);
+            }, 800);
+            return;
+        }
+
+        try {
+            const res = await fetch(`https://formspree.io/f/${formId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Accept: "application/json" },
+                body: JSON.stringify(formData),
+            });
+            if (res.ok) {
+                setSubmitted(true);
+                setFormData({ name: "", email: "", message: "" });
+                setTimeout(() => {
+                    setSubmitted(false);
+                    onClose();
+                }, 3000);
+            } else {
+                setErrorMessage("Failed to send message. Please try WhatsApp.");
+            }
+        } catch {
+            setErrorMessage("Network error. Please try WhatsApp.");
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -45,7 +79,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                         </div>
                         <button
                             onClick={onClose}
-                            className="p-2 hover:bg-primary/5 rounded-full transition-colors text-secondary"
+                            className="p-2 hover:bg-primary/5 rounded-full transition-colors text-secondary cursor-pointer"
                         >
                             <X size={24} />
                         </button>
@@ -53,7 +87,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
                     {/* Form */}
                     {!submitted ? (
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                            {errorMessage && (
+                                <p className="text-xs text-red-500 bg-red-500/10 p-2.5 rounded-lg border border-red-500/20">
+                                    {errorMessage}
+                                </p>
+                            )}
                             <div className="relative">
                                 <label className="text-sm font-semibold text-primary mb-1 block">Your Name</label>
                                 <div className="relative flex items-center">
@@ -63,8 +102,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                                     <input
                                         type="text"
                                         required
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                         placeholder="John Doe"
-                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20"
+                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                                     />
                                 </div>
                             </div>
@@ -78,8 +119,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                                     <input
                                         type="email"
                                         required
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                         placeholder="john@example.com"
-                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20"
+                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20 text-sm"
                                     />
                                 </div>
                             </div>
@@ -93,8 +136,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                                     <textarea
                                         required
                                         rows={4}
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                         placeholder="How can I help you?"
-                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20 resize-none"
+                                        className="w-full bg-primary/5 border border-transparent focus:border-primary/20 hover:bg-primary/10 transition-colors rounded-xl py-3 pl-10 pr-4 text-primary outline-none focus:ring-2 focus:ring-primary/20 resize-none text-sm"
                                     />
                                 </div>
                             </div>
@@ -102,7 +147,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                             <Button
                                 type="submit"
                                 disabled={submitting}
-                                className="w-full py-6 mt-2 rounded-xl bg-primary text-primary-foreground font-semibold text-base hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
+                                className="w-full py-6 mt-2 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-all flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 {submitting ? (
                                     <>
@@ -123,10 +168,10 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                                 <Send size={32} />
                             </div>
                             <h3 className="text-xl sm:text-2xl font-bold text-primary mb-2">Message Sent!</h3>
-                            <p className="text-secondary mb-6">Thank you for reaching out. I will get back to you shortly.</p>
+                            <p className="text-secondary mb-6 text-sm">Thank you for reaching out. I will get back to you shortly.</p>
                             <Button
                                 onClick={onClose}
-                                className="px-8 rounded-full bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary transition-colors"
+                                className="px-8 rounded-full bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary transition-colors cursor-pointer"
                             >
                                 Close
                             </Button>

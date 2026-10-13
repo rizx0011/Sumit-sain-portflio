@@ -67,7 +67,7 @@ const Footer = () => {
 
                     {/* Copyright */}
                     <p className="font-jost text-[13px] font-medium text-secondary/90 text-center tracking-wide mt-2">
-                        © 2016–2026 Sumit Sain. All rights reserved.
+                        © 2026 Sumit Sain. All rights reserved.
                     </p>
 
                 </div>

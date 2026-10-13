@@ -2,20 +2,22 @@ import { NextResponse } from "next/server";
 
 const experienceData = [
     {
-        icon: "/images/icon/tailwind-icon.svg",
-        role: "Full Stack Developer",
-        location: "Remote",
-        startYear: "2025",
+        icon: "/images/logos/zenviq.png",
+        role: "Frontend Developer",
+        company: "ZENVIQ Digital Agency",
+        location: "Hanumangarh, Rajasthan",
+        startYear: "2024",
         endYear: "Present",
         bulletPoints: [
-            "Developed scalable full-stack web applications using React, Node.js, Express, and MongoDB",
-            "Built responsive and modern UI interfaces with Tailwind CSS for better user experience",
-            "Collaborated with designers and developers to deliver high-performance features and reusable components"
+            "Frontend Developer at ZENVIQ Digital Agency, crafting modern, high-performance web applications and websites",
+            "Developed responsive user interfaces with Next.js, React, and Tailwind CSS for clients across various industries",
+            "Collaborated with design and development teams to ensure pixel-perfect implementation, fast loading speeds, and seamless UX"
         ]
     },
     {
         icon: "/images/icon/asana-icon.svg",
         role: "WordPress Developer",
+        company: "Freelance",
         location: "Remote",
         startYear: "2024",
         endYear: "Present",

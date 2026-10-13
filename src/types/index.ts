@@ -1,6 +1,7 @@
 export interface ExperienceItem {
     icon: string;
     role: string;
+    company?: string;
     location: string;
     startYear: string;
     endYear: string;
@@ -28,9 +29,12 @@ export interface ProjectOverviewData {
 export interface FeaturedWorkItem {
     title: string;
     description: string;
+    problem?: string;
     roles: string[];
     image: string;
     url?: string;
+    repoUrl?: string;
     category?: string;
     techStack?: string[];
 }
+

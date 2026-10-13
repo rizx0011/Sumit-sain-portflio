@@ -47,11 +47,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 @theme {
@@ -219,6 +221,14 @@ body {
   background: var(--secondary);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Mobile Typography overrides for responsive scaling */
 @media (max-width: 768px) {
   html {
@@ -239,4 +249,42 @@ body {
   p, .p, li, .li {
     font-size: 13px;
   }
+}
+
+/* ── 120FPS Hardware-Accelerated Smooth Marquees ── */
+@keyframes marquee-smooth {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-reverse-smooth {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marquee-smooth 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-smooth-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse-smooth 36s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-smooth:hover,
+.animate-marquee-smooth-reverse:hover {
+  animation-play-state: paused;
 }

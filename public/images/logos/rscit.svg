@@ -1,0 +1,21 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="96" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="4"/>
+  
+  <!-- Outer Ring Elements -->
+  <circle cx="100" cy="100" r="82" stroke="#0284C7" stroke-width="3" stroke-dasharray="4 2"/>
+  
+  <!-- Central Swirl / Emblem inspired by RKCL / RS-CIT -->
+  <path d="M100 35C135.899 35 165 64.1015 165 100C165 135.899 135.899 165 100 165C64.1015 165 35 135.899 35 100" stroke="#0369A1" stroke-width="8" stroke-linecap="round"/>
+  
+  <path d="M100 55C124.853 55 145 75.1472 145 100C145 124.853 124.853 145 100 145C75.1472 145 55 124.853 55 100" stroke="#0284C7" stroke-width="6" stroke-linecap="round"/>
+  
+  <circle cx="100" cy="100" r="22" fill="#0369A1"/>
+  
+  <!-- Stylized Monogram / Lettering inside -->
+  <text x="100" y="106" font-family="system-ui, sans-serif" font-size="16" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">RS</text>
+  
+  <!-- Bottom Text Banner -->
+  <rect x="45" y="142" width="110" height="26" rx="13" fill="#0284C7"/>
+  <text x="100" y="159" font-family="system-ui, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">RS-CIT</text>
+</svg>

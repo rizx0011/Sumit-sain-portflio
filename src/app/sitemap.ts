@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: "https://sumitsain.vercel.app/work",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: "https://sumitsain.vercel.app/tools",
       lastModified: new Date(),
       changeFrequency: "monthly",

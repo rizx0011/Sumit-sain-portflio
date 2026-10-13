@@ -1,0 +1,23 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fsGrad" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.5" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Rounded Badge -->
+  <rect x="15" y="15" width="170" height="170" rx="40" fill="#0F172A"/>
+  <rect x="15" y="15" width="170" height="170" rx="40" stroke="url(#fsGrad)" stroke-width="4"/>
+  
+  <!-- Code Brackets & Slash -->
+  <path d="M72 70L46 100L72 130" stroke="url(#fsGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M128 70L154 100L128 130" stroke="url(#fsGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M112 62L88 138" stroke="#38BDF8" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Subtle Glowing Dots -->
+  <circle cx="100" cy="155" r="4" fill="#38BDF8"/>
+  <circle cx="86" cy="155" r="3" fill="#818CF8"/>
+  <circle cx="114" cy="155" r="3" fill="#F472B6"/>
+</svg>

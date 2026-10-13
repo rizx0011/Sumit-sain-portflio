@@ -27,16 +27,20 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://sumitsain.vercel.app"),
+  alternates: {
+    canonical: "https://sumitsain.vercel.app",
+  },
   title: "Sumit Sain - Full Stack Developer & WordPress Expert",
   description:
-    "Sumit Sain is a Full Stack Developer and WordPress Expert from Rajasthan, India, building fast, scalable web experiences that help businesses grow online.",
+    "Full Stack Developer & WordPress Expert from Rajasthan, India. I build fast, SEO-friendly websites and web apps for businesses.",
   verification: {
     google: "kGKw-i68QyW00twKGit7MnXUUMfr93RiAzQZSkvZ0Pc",
   },
   openGraph: {
     title: "Sumit Sain - Full Stack Developer & WordPress Expert",
     description:
-      "Full Stack Developer & WordPress Expert building fast, beautiful, scalable web experiences.",
+      "Full Stack Developer & WordPress Expert from Rajasthan, India. I build fast, SEO-friendly websites and web apps for businesses.",
     url: "https://sumitsain.vercel.app",
     siteName: "Sumit Sain",
     images: [
@@ -53,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Sumit Sain - Full Stack Developer & WordPress Expert",
     description:
-      "Full Stack Developer & WordPress Expert building fast, beautiful, scalable web experiences.",
+      "Full Stack Developer & WordPress Expert from Rajasthan, India. I build fast, SEO-friendly websites and web apps for businesses.",
     images: ["https://sumitsain.vercel.app/images/hero-sec/user-img.jpg"],
   },
 };
@@ -77,30 +81,40 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Sumit Sain",
-              url: "https://sumitsain.vercel.app",
-              image: "https://sumitsain.vercel.app/images/hero-sec/user-img.jpg",
-              jobTitle: "Full Stack Developer & WordPress Expert",
-              description:
-                "Sumit Sain is a Full Stack Developer and WordPress Expert from Rajasthan, India, building fast and scalable web experiences.",
-              address: {
-                "@type": "PostalAddress",
-                addressRegion: "Rajasthan",
-                addressCountry: "IN",
-              },
-              sameAs: [
-                "https://instagram.com/sumitsxin01",
-                "https://x.com/sumitsxin01",
-                "https://linkedin.com/in/sumit-sain",
-                "https://github.com/sumitsxin01",
-              ],
-              knowsAbout: [
-                "React",
-                "Next.js",
-                "WordPress",
-                "Full Stack Development",
-                "Web Development",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  name: "Sumit Sain",
+                  jobTitle: "Full Stack Developer & WordPress Expert",
+                  url: "https://sumitsain.vercel.app",
+                  image: "https://sumitsain.vercel.app/images/hero-sec/user-img.jpg",
+                  description:
+                    "Full Stack Developer & WordPress Expert from Rajasthan, India. I build fast, SEO-friendly websites and web apps for businesses.",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressRegion: "Rajasthan",
+                    addressCountry: "India",
+                  },
+                  sameAs: [
+                    "https://instagram.com/sumitsxin01",
+                    "https://x.com/sumitsxin01",
+                    "https://linkedin.com/in/sumit-sain",
+                    "https://github.com/sumitsxin01",
+                  ],
+                  knowsAbout: [
+                    "React",
+                    "Next.js",
+                    "WordPress",
+                    "Full Stack Development",
+                    "Web Development",
+                    "Tailwind CSS",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  name: "Sumit Sain",
+                  url: "https://sumitsain.vercel.app",
+                },
               ],
             }),
           }}

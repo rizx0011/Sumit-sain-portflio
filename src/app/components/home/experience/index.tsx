@@ -1,99 +1,132 @@
 "use client";
-import { useEffect, useState } from "react";
-import { Briefcase } from "lucide-react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { ExperienceItem } from "@/types";
+import { ChevronDown } from "lucide-react";
+import { experiences, ExperienceEntry } from "@data/experience";
+
+interface CardProps {
+  item: ExperienceEntry;
+  defaultExpanded?: boolean;
+}
+
+const ExperienceCard: React.FC<CardProps> = ({ item, defaultExpanded = false }) => {
+  const [expanded, setExpanded] = useState(defaultExpanded);
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="bg-card rounded-2xl sm:rounded-3xl border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] p-4 sm:p-5 transition-all duration-300 hover:border-primary/15">
+      {/* Main Row */}
+      <div className="flex items-center justify-between gap-3 sm:gap-4">
+        {/* Left: Clean Circular Logo */}
+        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center bg-primary/5">
+          {!imgError ? (
+            <Image
+              src={item.logo}
+              alt={item.logoAlt || item.title}
+              width={64}
+              height={64}
+              className="w-full h-full object-cover rounded-full"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <span className="font-bold text-lg text-primary/70 select-none">
+              {item.title.charAt(0)}
+            </span>
+          )}
+        </div>
+
+        {/* Center: Title, Role Line, One-line Truncated Description */}
+        <div className="flex-1 min-w-0 pr-2">
+          <h3 className="font-jost text-base sm:text-lg font-semibold text-primary tracking-tight truncate">
+            {item.title}
+          </h3>
+          <p className="font-jost text-xs sm:text-sm text-secondary/90 font-normal truncate">
+            {item.role}
+          </p>
+          {!expanded && (
+            <p className="font-inter text-xs sm:text-sm text-secondary/60 font-normal truncate mt-0.5">
+              {item.description}
+            </p>
+          )}
+        </div>
+
+        {/* Right: Date and Round Chevron Button */}
+        <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
+          <span className="font-jost text-xs sm:text-sm text-secondary/70 whitespace-nowrap hidden sm:inline-block">
+            {item.date}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => setExpanded((prev) => !prev)}
+            aria-expanded={expanded}
+            aria-label={expanded ? `Collapse ${item.title}` : `Expand ${item.title}`}
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-primary/10 flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-300 cursor-pointer"
+          >
+            <ChevronDown
+              size={16}
+              className={`transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Expanded View */}
+      {expanded && (
+        <div className="mt-4 pt-4 border-t border-primary/5 animate-in fade-in slide-in-from-top-1 duration-300">
+          {/* Mobile Date */}
+          <div className="sm:hidden mb-2 text-xs font-jost text-secondary/70">
+            {item.date}
+          </div>
+
+          <p className="font-inter text-xs sm:text-sm text-secondary leading-relaxed mb-3">
+            {item.description}
+          </p>
+
+          {item.bullets && item.bullets.length > 0 && (
+            <ul className="space-y-1.5 pl-0.5">
+              {item.bullets.map((bullet, idx) => (
+                <li
+                  key={idx}
+                  className="flex items-start gap-2.5 text-xs sm:text-sm text-secondary/85 leading-relaxed"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-1.5 flex-shrink-0" />
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Experience = () => {
-    const [experienceData, setExperienceData] = useState<ExperienceItem[] | null>(null);
+  return (
+    <section id="experience" className="py-6 md:py-10">
+      <div className="container relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-7">
+          {/* Header */}
+          <div className="flex flex-col gap-1.5 mb-6">
+            <p className="font-jost uppercase tracking-[2.5px] text-xs font-semibold text-secondary/60">
+              Experience &amp; Roles • Career Path
+            </p>
+            <h2 className="font-instrument text-2xl sm:text-3xl text-primary font-normal tracking-tight">
+              Work &amp; <span className="font-serif italic text-primary">Education</span>
+            </h2>
+          </div>
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch('/api/page-data')
-                if (!res.ok) throw new Error('Failed to fetch')
-                const data = await res.json()
-                setExperienceData(data?.experienceData)
-            } catch (error) {
-                console.error('Error fetching experience data:', error)
-            }
-        }
-
-        fetchData()
-    }, [])
-
-    return (
-        <section id="work">
-            <div className="container relative z-10">
-                <div className="max-w-4xl mx-auto">
-                    {/* Header */}
-                    <div className="flex flex-col gap-2 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        <div className="flex items-center gap-3 text-primary mb-2">
-                            <div className="p-2 bg-primary/5 rounded-lg">
-                                <Briefcase size={24} className="text-primary" />
-                            </div>
-                            <div>
-                                <h2 className="text-lg sm:text-2xl font-semibold tracking-tight">Experience</h2>
-                                <p className="text-secondary text-sm font-normal">Professional career & history</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Timeline */}
-                    <div className="relative pl-8 sm:pl-12">
-                        {/* Vertical Line */}
-                        <div className="absolute left-[15px] sm:left-[19px] top-4 bottom-4 w-[2px] bg-primary/5" />
-
-                        <div className="flex flex-col gap-12">
-                            {experienceData?.map((item: ExperienceItem, index: number) => (
-                                <div
-                                    key={index}
-                                    className="relative transition-all duration-300 group"
-                                    style={{ animationDelay: `${index * 150}ms` }}
-                                >
-                                    {/* Timeline Node */}
-                                    <div className="absolute -left-[33px] sm:-left-[41px] top-0 z-10 p-1.5 sm:p-2 rounded-xl bg-card border border-primary/5 shadow-sm transition-transform duration-300 group-hover:scale-110">
-                                        <Briefcase size={16} className="text-primary sm:w-[20px] sm:h-[20px]" />
-                                    </div>
-
-                                    {/* Content Card */}
-                                    <div className="bg-card rounded-2xl p-6 sm:p-8 border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:-translate-y-1 group">
-                                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-10 h-10 rounded-lg overflow-hidden border border-primary/5 bg-primary/5 flex items-center justify-center p-1.5">
-                                                    <Image src={item.icon} alt={item.role ? `${item.role} at company logo` : "Company logo"} width={28} height={28} className="object-contain" />
-                                                </div>
-                                                <div className="flex flex-col gap-0.5">
-                                                    <h3 className="text-base sm:text-xl font-semibold text-primary">{item.role}</h3>
-                                                    <p className="text-secondary font-normal text-xs sm:text-sm">{item.location}</p>
-                                                </div>
-                                            </div>
-
-                                            <div className="inline-flex items-center self-start text-primary text-xs font-semibold whitespace-nowrap bg-primary/5 px-3 py-1 rounded-full border border-primary/5">
-                                                {item.startYear} – {item.endYear}
-                                            </div>
-                                        </div>
-
-                                        <ul className="mt-6 flex flex-col gap-3">
-                                            {item.bulletPoints?.map((point: string, idx: number) => (
-                                                <li
-                                                    key={idx}
-                                                    className="flex items-start gap-2.5 text-sm sm:text-base font-normal text-secondary animate-in fade-in slide-in-from-bottom-2 duration-300"
-                                                >
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-primary/30 mt-2 flex-shrink-0" />
-                                                    {point}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
+          {/* List of Experience Cards */}
+          <div className="flex flex-col gap-3">
+            {experiences.map((item) => (
+              <ExperienceCard key={item.id} item={item} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Experience;

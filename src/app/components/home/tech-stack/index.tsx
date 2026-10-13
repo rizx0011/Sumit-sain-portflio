@@ -8,21 +8,20 @@ const technologies = [
     { name: "JavaScript", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" },
     { name: "React", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" },
     { name: "Next.js", logo: "https://cdn.worldvectorlogo.com/logos/next-js.svg" },
-    { name: "Vue.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg" },
-    { name: "Angular", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/angularjs/angularjs-original.svg" },
     { name: "Tailwind CSS", logo: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" },
-    { name: "Bootstrap", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg" },
     { name: "Node.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" },
-    { name: "Express.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" },
-    { name: "Python", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" },
-    { name: "Django", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-plain.svg" },
-    { name: "Flask", logo: "https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" },
-    { name: "PHP", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" },
-    { name: "Laravel", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg" },
     { name: "WordPress", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/wordpress/wordpress-plain.svg" },
     { name: "MongoDB", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg" },
     { name: "MySQL", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg" },
-    { name: "PostgreSQL", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" }
+    { name: "Bootstrap", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-original.svg" },
+    { name: "Express.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" },
+    { name: "PHP", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" },
+    { name: "Python", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" },
+    { name: "PostgreSQL", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" },
+    { name: "TypeScript", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" },
+    { name: "Vue.js", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg" },
+    { name: "Laravel", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg" },
+    { name: "Django", logo: "https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-plain.svg" }
 ];
 
 const TechStack = () => {
@@ -40,19 +39,16 @@ const TechStack = () => {
     };
 
     return (
-        <section className="py-12 overflow-hidden">
-            <div className="max-w-2xl mx-auto overflow-hidden">
-                {/* Marquee Content */}
+        <section className="py-10 overflow-hidden">
+            <div className="max-w-5xl mx-auto px-4 sm:px-7 overflow-hidden">
                 <div
-                    className={`flex items-center gap-12 sm:gap-20 overflow-hidden whitespace-nowrap cursor-pointer px-10 animate-marquee ${isPaused ? 'animate-paused' : ''}`}
+                    className="overflow-hidden"
                     style={{
-                        WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-                        maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+                        WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+                        maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)'
                     }}
-                    onClick={handleInteraction}
-                    onMouseDown={handleInteraction}
-                    onTouchStart={handleInteraction}
                 >
+                    <div className="flex items-center gap-12 sm:gap-16 animate-marquee-smooth py-2">
                     {/* Double the items for seamless loop */}
                     {[...technologies, ...technologies].map((tech, index) => (
                         <div
@@ -72,23 +68,9 @@ const TechStack = () => {
                             <span className="text-xs font-semibold text-secondary uppercase tracking-wider">{tech.name}</span>
                         </div>
                     ))}
+                    </div>
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes marquee {
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
-                }
-                .animate-marquee {
-                    animation: marquee 20s linear infinite;
-                    display: flex;
-                    width: max-content;
-                }
-                .animate-paused {
-                    animation-play-state: paused !important;
-                }
-            `}</style>
         </section>
     );
 };

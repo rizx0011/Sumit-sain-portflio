@@ -70,12 +70,12 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
             action: () => handleScroll("about")
         },
         {
-            id: "nav-work",
-            title: "Work / Experience",
-            description: "View professional experience & roles",
+            id: "nav-experience",
+            title: "Career & Experience",
+            description: "View professional experience & education",
             category: "Navigation",
             icon: <Server className="w-4.5 h-4.5 text-secondary" />,
-            action: () => handleScroll("work")
+            action: () => handleScroll("experience")
         },
         {
             id: "nav-services",
@@ -84,14 +84,6 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
             category: "Navigation",
             icon: <Globe className="w-4.5 h-4.5 text-secondary" />,
             action: () => handleScroll("services")
-        },
-        {
-            id: "nav-education",
-            title: "Education & Certifications",
-            description: "Academic history and courses completed",
-            category: "Navigation",
-            icon: <BookOpen className="w-4.5 h-4.5 text-secondary" />,
-            action: () => handleScroll("education")
         },
         {
             id: "nav-projects",

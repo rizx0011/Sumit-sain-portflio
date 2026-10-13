@@ -1,7 +1,41 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { GraduationCap } from "lucide-react";
 import { EducationItem } from "@/types";
+
+const educationLogos: Record<string, string> = {
+    "Bachelor of Computer Applications (BCA)": "/images/experience/mgsu.png",
+    "RS-CIT": "/images/experience/rscit.png",
+    "Web Development Certification": "/images/experience/dexter-lab.png",
+    "Higher Secondary Education": "",
+};
+
+const EducationLogo = ({ title }: { title: string }) => {
+    const [imgError, setImgError] = useState(false);
+    const logoSrc = educationLogos[title] || "";
+
+    if (!logoSrc || imgError) {
+        return (
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center bg-primary/10 flex-shrink-0">
+                <GraduationCap size={22} className="text-primary/60" />
+            </div>
+        );
+    }
+
+    return (
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden flex-shrink-0">
+            <Image
+                src={logoSrc}
+                alt={`${title} logo`}
+                width={56}
+                height={56}
+                className="w-full h-full object-cover rounded-full"
+                onError={() => setImgError(true)}
+            />
+        </div>
+    );
+};
 
 const Education = () => {
     const [educationData, setEducationData] = useState<EducationItem[] | null>(null);
@@ -24,7 +58,7 @@ const Education = () => {
     return (
         <section id="education">
             <div className="container relative z-10">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-5xl mx-auto px-4 sm:px-7">
                     {/* Header */}
                     <div className="flex flex-col gap-2 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
                         <div className="flex items-center gap-3 text-primary mb-2">
@@ -33,7 +67,6 @@ const Education = () => {
                             </div>
                             <div>
                                 <h2 className="text-lg sm:text-2xl font-semibold tracking-tight">Education</h2>
-                                <p className="text-secondary text-sm font-normal">Academic journey & certifications</p>
                             </div>
                         </div>
                     </div>
@@ -58,9 +91,14 @@ const Education = () => {
                                     {/* Content Card */}
                                     <div className="bg-card rounded-2xl p-6 sm:p-8 border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:-translate-y-1 group">
                                         <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                                            <div className="flex flex-col gap-1">
-                                                <h3 className="text-base sm:text-xl font-semibold text-primary">{item.title}</h3>
-                                                <p className="text-secondary font-normal">{item.subtitle}</p>
+                                            <div className="flex items-center gap-4">
+                                                {/* Round Logo */}
+                                                <EducationLogo title={item.title} />
+
+                                                <div className="flex flex-col gap-1">
+                                                    <h3 className="text-base sm:text-xl font-semibold text-primary">{item.title}</h3>
+                                                    <p className="text-secondary font-normal">{item.subtitle}</p>
+                                                </div>
                                             </div>
 
                                             {item.date && (

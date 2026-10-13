@@ -266,28 +266,68 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
 
                                         <p className="project-card-description">{project.description}</p>
 
-                                        {/* Tech Stack Badges */}
-                                        {project.techStack && project.techStack.length > 0 && (
-                                            <div className="project-tech-stack" aria-label="Technologies used">
-                                                {project.techStack.map((tech, tIdx) => {
-                                                    const badge = techBadgeInfo[tech];
-                                                    return (
-                                                        <span
-                                                            key={tIdx}
-                                                            className="tech-badge"
-                                                            style={{ backgroundColor: badge?.bg || '#262626' }}
-                                                            title={tech}
-                                                        >
-                                                            {badge?.icon ? badge.icon : (
-                                                                <span className="font-mono text-[8px] font-bold text-white">
-                                                                    {tech.slice(0, 2)}
-                                                                </span>
-                                                            )}
-                                                        </span>
-                                                    );
-                                                })}
-                                            </div>
+                                        {project.problem && (
+                                            <p className="text-xs text-secondary/85 mt-2.5 italic border-l-2 border-primary/20 pl-2.5 py-0.5 leading-relaxed">
+                                                <span className="font-semibold not-italic text-primary/90">Challenge & Solution: </span>
+                                                {project.problem}
+                                            </p>
                                         )}
+
+                                        {/* Tech Stack Badges & Links */}
+                                        <div className="flex items-center justify-between gap-3 mt-3 pt-2">
+                                            {project.techStack && project.techStack.length > 0 && (
+                                                <div className="project-tech-stack" aria-label="Technologies used">
+                                                    {project.techStack.map((tech, tIdx) => {
+                                                        const badge = techBadgeInfo[tech];
+                                                        return (
+                                                            <span
+                                                                key={tIdx}
+                                                                className="tech-badge"
+                                                                style={{ backgroundColor: badge?.bg || '#262626' }}
+                                                                title={tech}
+                                                            >
+                                                                {badge?.icon ? badge.icon : (
+                                                                    <span className="font-mono text-[8px] font-bold text-white">
+                                                                        {tech.slice(0, 2)}
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+
+                                            <div className="flex items-center gap-3 text-xs ml-auto">
+                                                {project.url && (
+                                                    <a
+                                                        href={project.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-1 font-jost font-semibold uppercase tracking-wider text-primary hover:opacity-75 transition-opacity"
+                                                    >
+                                                        <span>Live</span>
+                                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path d="M7 17l9.2-9.2M17 17V8H8"/>
+                                                        </svg>
+                                                    </a>
+                                                )}
+                                                {project.repoUrl && (
+                                                    <a
+                                                        href={project.repoUrl}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="inline-flex items-center gap-1 font-jost font-semibold uppercase tracking-wider text-secondary hover:text-primary transition-colors"
+                                                    >
+                                                        <span>Code</span>
+                                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                            <polyline points="16 18 22 12 16 6"></polyline>
+                                                            <polyline points="8 6 2 12 8 18"></polyline>
+                                                        </svg>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             );
@@ -354,9 +394,9 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     pointer-events: none;
                 }
                 .featured-work-inner {
-                    max-width: 960px;
+                    max-width: 1024px;
                     margin: 0 auto;
-                    padding: 0 20px;
+                    padding: 0 16px;
                     position: relative;
                 }
                 .back-link-wrapper {

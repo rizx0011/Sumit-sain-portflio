@@ -114,15 +114,8 @@ const HeaderNavbar = () => {
 
     const handleNavClick = (
         e: React.MouseEvent<HTMLAnchorElement>,
-        href: string,
-        isContact?: boolean
+        href: string
     ) => {
-        if (isContact) {
-            e.preventDefault();
-            setIsContactOpen(true);
-            setIsMobileMenuOpen(false);
-            return;
-        }
         if (href.startsWith("#")) {
             e.preventDefault();
             const id = href.replace("#", "");
@@ -131,20 +124,23 @@ const HeaderNavbar = () => {
                 router.push(`/#${id}`);
             } else {
                 const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: "smooth" });
+                if (el) {
+                    const yOffset = -75;
+                    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                }
             }
         }
     };
 
-    /* ── Nav links — same as samirsain.com ── */
+    /* ── Nav links (Exact 6 items: About, Work, Process, Tools, Blog, Contact) ── */
     const navItems = [
         { label: "About", href: "#about" },
         { label: "Work", href: "#work" },
-        { label: "Services", href: "#services" },
-        { label: "Components", href: "/tools" },
-        { label: "Blog", href: "/blog" },
-        { label: "Resume", href: "#education" },
-        { label: "Contact", href: "#contact", isContact: true },
+        { label: "Process", href: "#process" },
+        { label: "Tools", href: "#tools" },
+        { label: "Blog", href: "#blog" },
+        { label: "Contact", href: "#contact" },
     ];
 
 
@@ -159,13 +155,13 @@ const HeaderNavbar = () => {
                         <div className="flex-shrink-0"></div>
 
                         {/* ── CENTER: Nav links (desktop) — starts from About ── */}
-                        <nav className="hidden md:flex items-center justify-center gap-0.5">
+                        <nav className="hidden md:flex items-center justify-center gap-1">
                             {navItems.map((item) => (
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    onClick={(e) => handleNavClick(e, item.href, item.isContact)}
-                                    className="font-jost text-[12px] font-medium text-secondary hover:text-primary px-3 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 cursor-pointer tracking-wide whitespace-nowrap"
+                                    onClick={(e) => handleNavClick(e, item.href)}
+                                    className="font-jost text-[13px] font-medium text-secondary hover:text-primary px-3.5 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 cursor-pointer tracking-wide whitespace-nowrap"
                                 >
                                     {item.label}
                                 </Link>
@@ -236,7 +232,7 @@ const HeaderNavbar = () => {
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    onClick={(e) => handleNavClick(e, item.href, item.isContact)}
+                                    onClick={(e) => handleNavClick(e, item.href)}
                                     className="font-jost text-sm font-medium text-secondary hover:text-primary py-2.5 px-3 rounded-lg hover:bg-primary/5 transition-all duration-200 cursor-pointer"
                                 >
                                     {item.label}
