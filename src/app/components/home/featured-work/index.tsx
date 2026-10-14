@@ -87,6 +87,11 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
     const [featureWork, setFeatureWork] = useState<FeaturedWorkItem[] | null>(null);
     const [activeCategory, setActiveCategory] = useState<string>("All");
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
+    const [expandedCaptions, setExpandedCaptions] = useState<Record<string, boolean>>({});
+
+    const toggleCaption = (key: string) => {
+        setExpandedCaptions(prev => ({ ...prev, [key]: !prev[key] }));
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -165,7 +170,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                             A curated collection of shipping web applications, experiments, and digital craftsmanship.
                         </p>
 
-                        {/* Category Filter Pills */}
+                        {/* Category Filter Pills with smooth horizontal scrolling */}
                         <div className="category-filters" role="tablist" aria-label="Filter projects by category">
                             {categories.map((cat) => (
                                 <button
@@ -186,13 +191,16 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                         </div>
                     </div>
 
-                    {/* Project Cards Grid (Compact & Sleek) */}
+                    {/* Project Cards Grid */}
                     <div className="project-cards-grid">
                         {displayedProjects.map((project: FeaturedWorkItem, index: number) => {
                             const displayUrl = project.url ? project.url.replace(/^https?:\/\//, '').replace(/\/$/, '') : 'project.vercel.app';
 
+                            const cardKey = project.title || String(index);
+                            const isCaptionExpanded = Boolean(expandedCaptions[cardKey]);
+
                             return (
-                                <div key={project.title || index} className="project-card">
+                                <div key={cardKey} className="project-card">
                                     {/* Browser Mockup Image Frame */}
                                     <a
                                         href={project.url || "#"}
@@ -265,7 +273,29 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                             )}
                                         </div>
 
-                                        <p className="project-card-description">{project.description}</p>
+                                        <div className="project-card-desc-wrapper">
+                                            <p className={`project-card-description ${isCaptionExpanded ? 'expanded' : 'collapsed'}`}>
+                                                {project.description}
+                                            </p>
+                                            <button
+                                                type="button"
+                                                onClick={() => toggleCaption(cardKey)}
+                                                className="caption-symbol-btn"
+                                                aria-label={isCaptionExpanded ? "Show less" : "Show more"}
+                                            >
+                                                {isCaptionExpanded ? (
+                                                    <span className="caption-symbol-text">
+                                                        <span>less</span>
+                                                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m18 15-6-6-6 6"/></svg>
+                                                    </span>
+                                                ) : (
+                                                    <span className="caption-symbol-text">
+                                                        <span>more</span>
+                                                        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                                                    </span>
+                                                )}
+                                            </button>
+                                        </div>
 
                                         {project.problem && (
                                             <p className="text-xs text-secondary/85 mt-2.5 italic border-l-2 border-primary/20 pl-2.5 py-0.5 leading-relaxed">
@@ -328,7 +358,6 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                                 )}
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             );
@@ -350,7 +379,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                         <path d="m6 9 6 6 6-6"/>
                                     </svg>
                                 </button>
-                            ) : isExpanded && (
+                            ) : isExpanded ? (
                                 <div className="expanded-actions">
                                     <button
                                         type="button"
@@ -366,6 +395,15 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                             <path d="m18 15-6-6-6 6"/>
                                         </svg>
                                     </button>
+                                    <Link href="/work" className="full-archive-link">
+                                        <span>Full Archive</span>
+                                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="expanded-actions">
                                     <Link href="/work" className="full-archive-link">
                                         <span>Full Archive</span>
                                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -395,8 +433,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     pointer-events: none;
                 }
                 .featured-work-inner {
-                    max-width: 860px;
-                    width: 100%;
+                    max-width: 1024px;
                     margin: 0 auto;
                     padding: 0 16px;
                     position: relative;
@@ -518,9 +555,18 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                 }
                 .category-filters {
                     display: flex;
-                    gap: 6px;
-                    flex-wrap: wrap;
+                    gap: 8px;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    scroll-behavior: smooth;
+                    white-space: nowrap;
+                    scrollbar-width: none;
+                    -ms-overflow-style: none;
+                    padding: 4px 2px 8px;
                     margin-top: 16px;
+                }
+                .category-filters::-webkit-scrollbar {
+                    display: none;
                 }
                 .category-pill {
                     padding: 6px 14px;
@@ -532,6 +578,8 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     color: var(--secondary, #71717a);
                     cursor: pointer;
                     transition: all 0.2s ease;
+                    flex-shrink: 0;
+                    white-space: nowrap;
                 }
                 :global(.dark) .category-pill {
                     border-color: rgba(255,255,255,0.09);
@@ -562,11 +610,12 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     box-shadow: 0 2px 10px rgba(255,255,255,0.15);
                 }
 
-                /* Grid with slightly reduced size */
+                /* Project Cards Grid */
                 .project-cards-grid {
                     display: grid;
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
                     gap: 32px 24px;
+                    width: 100%;
                 }
                 @media (max-width: 768px) {
                     .project-cards-grid { grid-template-columns: 1fr; gap: 28px; }
@@ -577,6 +626,8 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     display: flex;
                     flex-direction: column;
                     gap: 12px;
+                    min-width: 0;
+                    width: 100%;
                 }
                 .project-card-image-wrapper {
                     display: block;
@@ -760,15 +811,51 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     background: rgba(255,255,255,0.1);
                     color: #ffffff;
                 }
+                .project-card-desc-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 3px;
+                }
                 .project-card-description {
                     font-size: 13px;
                     color: var(--secondary, #71717a);
                     line-height: 1.55;
                     margin: 0;
+                    width: 100%;
+                }
+                .project-card-description.collapsed {
                     display: -webkit-box;
                     -webkit-line-clamp: 2;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
+                }
+                .project-card-description.expanded {
+                    display: block;
+                }
+                .caption-symbol-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    background: transparent;
+                    border: none;
+                    padding: 0;
+                    font-size: 11px;
+                    font-weight: 600;
+                    color: var(--primary, #09090b);
+                    opacity: 0.6;
+                    cursor: pointer;
+                    transition: opacity 0.2s ease;
+                }
+                :global(.dark) .caption-symbol-btn {
+                    color: #ffffff;
+                }
+                .caption-symbol-btn:hover {
+                    opacity: 1;
+                }
+                .caption-symbol-text {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 2px;
                 }
                 .project-tech-stack {
                     display: flex;
