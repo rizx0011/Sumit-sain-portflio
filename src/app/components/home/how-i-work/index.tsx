@@ -94,17 +94,19 @@ const HowIWork = () => {
   return (
     <section id="process" className="py-6 md:py-10">
       <div className="container relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-7">
+        <div className="max-w-[860px] mx-auto">
           {/* Header Row */}
           <div className="flex items-end justify-between mb-8">
             <div className="flex flex-col gap-2">
-              <p className="font-jost uppercase tracking-[3px] text-xs sm:text-sm font-semibold text-secondary/60">
-                Process
-              </p>
-              <h2 className="font-instrument text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
-                How I <span className="font-serif italic text-primary">Work</span>
+              <div className="flex items-center gap-2 font-sans uppercase tracking-[2.5px] text-xs font-semibold text-secondary/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                <span>Step-by-Step Workflow</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
+                How I <span className="italic text-primary">Work</span>
               </h2>
-              <p className="font-inter text-sm sm:text-base text-secondary leading-relaxed mt-1">
+              <span className="block w-10 h-[2px] bg-primary/20 rounded-full" />
+              <p className="font-sans text-sm sm:text-base text-secondary leading-relaxed mt-1">
                 A straightforward, transparent 4-step workflow from idea to live deployment.
               </p>
             </div>
@@ -116,7 +118,7 @@ const HowIWork = () => {
                 onClick={() => scroll("left")}
                 disabled={!canScrollLeft}
                 aria-label="Scroll left"
-                className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                   canScrollLeft
                     ? "border-primary/20 text-primary hover:bg-primary/5 active:scale-95"
                     : "border-primary/5 text-secondary/30 cursor-not-allowed"
@@ -131,7 +133,7 @@ const HowIWork = () => {
                 onClick={() => scroll("right")}
                 disabled={!canScrollRight}
                 aria-label="Scroll right"
-                className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                   canScrollRight
                     ? "border-primary/20 text-primary hover:bg-primary/5 active:scale-95"
                     : "border-primary/5 text-secondary/30 cursor-not-allowed"
@@ -166,8 +168,8 @@ const HowIWork = () => {
               return (
                 <div
                   key={idx}
-                  className="process-card bg-card rounded-2xl p-6 sm:p-7 border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:border-primary/15 transition-all duration-300 relative group snap-start flex-shrink-0"
-                  style={{ width: "min(300px, 80vw)" }}
+                  className="process-card bg-card rounded-3xl p-6 sm:p-7 border border-primary/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.2)] hover:border-primary/20 hover:-translate-y-1 transition-all duration-300 relative group snap-start flex-shrink-0"
+                  style={{ width: "min(280px, 80vw)" }}
                 >
                   {/* Step connector line (except last) */}
                   {idx < steps.length - 1 && (
@@ -175,18 +177,18 @@ const HowIWork = () => {
                   )}
 
                   <div className="flex items-center justify-between mb-5">
-                    <div className="p-3 bg-primary/5 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-3 bg-primary/5 rounded-2xl text-primary group-hover:scale-110 transition-transform duration-300">
                       <Icon size={22} />
                     </div>
-                    <span className="font-instrument italic text-3xl text-secondary/20 font-light select-none">
+                    <span className="font-serif italic text-3xl text-secondary/30 font-light select-none">
                       {step.number}
                     </span>
                   </div>
 
-                  <h3 className="font-jost text-lg font-semibold text-primary mb-2">
+                  <h3 className="font-sans text-base sm:text-lg font-semibold text-primary mb-2">
                     {step.title}
                   </h3>
-                  <p className="font-inter text-sm text-secondary leading-relaxed">
+                  <p className="font-sans text-xs sm:text-sm text-secondary leading-relaxed">
                     {step.desc}
                   </p>
                 </div>

@@ -189,21 +189,22 @@ const ExpertiseSection = () => {
   };
 
   return (
-    <section id="expertise" className="py-8 md:py-14">
+    <section id="expertise" className="py-6 md:py-10">
       <div className="container relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-7">
+        <div className="max-w-[860px] mx-auto">
           
           {/* Section Header */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div className="flex flex-col gap-2">
-              <div className="inline-flex items-center gap-2 font-jost uppercase tracking-[3px] text-xs sm:text-sm font-semibold text-secondary/60">
-                <Code2 size={14} className="text-primary/70" />
+              <div className="flex items-center gap-2 font-sans uppercase tracking-[2.5px] text-xs font-semibold text-secondary/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                 <span>Technologies &amp; Capabilities</span>
               </div>
-              <h2 className="font-instrument text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
-                Technical <span className="font-serif italic text-primary">Mastery</span> &amp; Stack
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
+                Technical <span className="italic text-primary">Mastery</span> &amp; Stack
               </h2>
-              <p className="font-inter text-sm sm:text-base text-secondary leading-relaxed max-w-xl">
+              <span className="block w-10 h-[2px] bg-primary/20 rounded-full mt-2" />
+              <p className="font-sans text-sm sm:text-base text-secondary leading-relaxed max-w-xl mt-1">
                 A modern full-stack toolkit engineered for lightning speed, clean aesthetics, and conversion-ready web products.
               </p>
             </div>
@@ -215,7 +216,7 @@ const ExpertiseSection = () => {
                 onClick={() => handleScroll("left")}
                 disabled={!canScrollLeft}
                 aria-label="Previous technologies"
-                className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                   canScrollLeft
                     ? "border-primary/20 text-primary hover:bg-primary/5 active:scale-95"
                     : "border-primary/5 text-secondary/30 cursor-not-allowed"
@@ -228,7 +229,7 @@ const ExpertiseSection = () => {
                 onClick={() => handleScroll("right")}
                 disabled={!canScrollRight}
                 aria-label="Next technologies"
-                className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
+                className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border flex items-center justify-center transition-all duration-200 cursor-pointer ${
                   canScrollRight
                     ? "border-primary/20 text-primary hover:bg-primary/5 active:scale-95"
                     : "border-primary/5 text-secondary/30 cursor-not-allowed"
@@ -247,7 +248,7 @@ const ExpertiseSection = () => {
                 <button
                   key={key}
                   onClick={() => setActiveCategory(key)}
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-jost font-semibold uppercase tracking-wider transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                  className={`px-4 py-2 min-h-[40px] rounded-full text-xs font-sans font-semibold uppercase tracking-wider transition-all duration-200 whitespace-nowrap cursor-pointer flex items-center justify-center ${
                     isActive
                       ? "bg-primary text-primary-foreground shadow-sm scale-[1.02]"
                       : "bg-card border border-primary/10 text-secondary hover:text-primary hover:border-primary/25"

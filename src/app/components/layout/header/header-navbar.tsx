@@ -116,67 +116,70 @@ const HeaderNavbar = () => {
         e: React.MouseEvent<HTMLAnchorElement>,
         href: string
     ) => {
-        if (href.startsWith("#")) {
-            e.preventDefault();
-            const id = href.replace("#", "");
-            setIsMobileMenuOpen(false);
-            if (pathname !== "/") {
-                router.push(`/#${id}`);
-            } else {
+        setIsMobileMenuOpen(false);
+        if (href.startsWith("/#") || href.startsWith("#")) {
+            const id = href.replace(/^\/?#/, "");
+            if (pathname === "/") {
+                e.preventDefault();
                 const el = document.getElementById(id);
                 if (el) {
                     const yOffset = -75;
                     const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
                     window.scrollTo({ top: y, behavior: "smooth" });
                 }
+            } else {
+                // Let Next.js Link navigate to /#id
             }
         }
     };
 
     /* ── Nav links (Exact 6 items: About, Work, Process, Tools, Blog, Contact) ── */
     const navItems = [
-        { label: "About", href: "#about" },
-        { label: "Work", href: "#work" },
-        { label: "Process", href: "#process" },
-        { label: "Tools", href: "#tools" },
-        { label: "Blog", href: "#blog" },
-        { label: "Contact", href: "#contact" },
+        { label: "About", href: "/#about" },
+        { label: "Work", href: "/#work" },
+        { label: "Process", href: "/#process" },
+        { label: "Tools", href: "/tools" },
+        { label: "Blog", href: "/blog" },
+        { label: "Contact", href: "/#contact" },
     ];
-
 
     return (
         <>
             {/* ════════════ NAVBAR ════════════ */}
-            <div className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-primary/5 shadow-[0_1px_0_0_rgba(0,0,0,0.05)] transition-shadow duration-300">
+            <header className="fixed top-0 left-0 right-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-primary/5 shadow-[0_1px_0_0_rgba(0,0,0,0.05)] transition-shadow duration-300">
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-[auto_1fr_auto] items-center h-[64px] sm:h-[72px] px-4 sm:px-7 gap-4">
+                    <div className="flex items-center justify-between h-[54px] sm:h-[60px] px-2 sm:px-4">
 
-                        {/* ── LEFT: Logo (Removed) ── */}
-                        <div className="flex-shrink-0"></div>
+                        {/* ── LEFT: placeholder for layout balance ── */}
+                        <div className="w-9" />
 
-                        {/* ── CENTER: Nav links (desktop) — starts from About ── */}
+                        {/* ── CENTER: Nav links (desktop) ── */}
                         <nav className="hidden md:flex items-center justify-center gap-1">
-                            {navItems.map((item) => (
-                                <Link
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={(e) => handleNavClick(e, item.href)}
-                                    className="font-jost text-[13px] font-medium text-secondary hover:text-primary px-3.5 py-2 rounded-lg hover:bg-primary/5 transition-all duration-200 cursor-pointer tracking-wide whitespace-nowrap"
-                                >
-                                    {item.label}
-                                </Link>
-                            ))}
+                            {navItems.map((item) => {
+                                const isActive = pathname === item.href || (item.href === "/blog" && pathname.startsWith("/blog"));
+                                return (
+                                    <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={(e) => handleNavClick(e, item.href)}
+                                        className={`font-sans text-[14px] font-semibold px-3.5 py-2 rounded-full transition-all duration-200 cursor-pointer tracking-wide whitespace-nowrap min-h-[36px] flex items-center ${
+                                            isActive
+                                                ? "bg-primary text-primary-foreground shadow-xs"
+                                                : "text-secondary hover:text-primary hover:bg-primary/5"
+                                        }`}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                );
+                            })}
                         </nav>
 
                         {/* ── RIGHT: Social + Theme + Search ── */}
-                        <div className="hidden md:flex items-center gap-0.5">
-                            {/* Vertical divider */}
-                            <div className="w-px h-5 bg-primary/10 mx-2" />
-
+                        <div className="hidden md:flex items-center gap-1">
                             {/* Theme toggle */}
                             <button
                                 onClick={toggleTheme}
-                                className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
                                 aria-label="Toggle theme"
                             >
                                 {isDarkMode ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
@@ -185,33 +188,34 @@ const HeaderNavbar = () => {
                             {/* Search */}
                             <button
                                 onClick={() => setIsSearchOpen(true)}
-                                className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
+                                className="w-10 h-10 rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer"
                                 aria-label="Search"
                             >
                                 <Search className="w-4 h-4" />
                             </button>
                         </div>
 
-                        {/* ── MOBILE right ── */}
+                        {/* ── MOBILE right controls (min 44px tap targets) ── */}
                         <div className="flex md:hidden items-center gap-1">
                             <button
                                 onClick={() => setIsSearchOpen(true)}
-                                className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
                                 aria-label="Search"
                             >
-                                <Search className="w-4.5 h-4.5" />
+                                <Search className="w-5 h-5" />
                             </button>
                             <button
                                 onClick={toggleTheme}
-                                className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
                                 aria-label="Toggle theme"
                             >
-                                {isDarkMode ? <Moon className="w-4.5 h-4.5" /> : <Sun className="w-4.5 h-4.5" />}
+                                {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
                             </button>
                             <button
                                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
+                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-colors cursor-pointer"
                                 aria-label="Toggle menu"
+                                aria-expanded={isMobileMenuOpen}
                             >
                                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
                             </button>
@@ -221,36 +225,47 @@ const HeaderNavbar = () => {
 
                 {/* ── MOBILE DRAWER ── */}
                 <div
-                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-primary/5 ${isMobileMenuOpen
-                            ? "max-h-[480px] opacity-100"
+                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-t border-primary/5 ${
+                        isMobileMenuOpen
+                            ? "max-h-[520px] opacity-100 py-4 shadow-xl"
                             : "max-h-0 opacity-0 pointer-events-none"
-                        }`}
+                    }`}
                 >
-                    <div className="px-5 py-5 flex flex-col gap-5 bg-background/97 backdrop-blur-xl">
-                        <nav className="flex flex-col gap-0.5">
-                            {navItems.map((item) => (
-                                <Link
-                                    key={item.label}
-                                    href={item.href}
-                                    onClick={(e) => handleNavClick(e, item.href)}
-                                    className="font-jost text-sm font-medium text-secondary hover:text-primary py-2.5 px-3 rounded-lg hover:bg-primary/5 transition-all duration-200 cursor-pointer"
-                                >
-                                    {item.label}
-                                </Link>
-                            ))}
+                    <div className="container mx-auto px-4 flex flex-col gap-4 bg-background/98 backdrop-blur-xl">
+                        <nav className="flex flex-col gap-1.5">
+                            {navItems.map((item) => {
+                                const isActive = pathname === item.href || (item.href === "/blog" && pathname.startsWith("/blog"));
+                                return (
+                                    <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={(e) => handleNavClick(e, item.href)}
+                                        className={`font-sans text-sm font-medium py-3 px-4 rounded-xl transition-all duration-200 cursor-pointer min-h-[44px] flex items-center justify-between ${
+                                            isActive
+                                                ? "bg-primary text-primary-foreground font-semibold"
+                                                : "text-secondary hover:text-primary hover:bg-primary/5"
+                                        }`}
+                                    >
+                                        <span>{item.label}</span>
+                                        {item.href.startsWith("/") && item.href !== "/" && (
+                                            <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">Page</span>
+                                        )}
+                                    </Link>
+                                );
+                            })}
                         </nav>
 
-                        <div className="h-px bg-primary/5 w-full" />
+                        <div className="h-px bg-primary/10 w-full" />
 
                         {/* Social links in mobile drawer */}
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 px-1">
                             {socials.map((s) => (
                                 <a
                                     key={s.label}
                                     href={s.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2 rounded-lg text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                                    className="min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center text-secondary hover:text-primary hover:bg-primary/5 transition-all duration-200"
                                     aria-label={s.label}
                                 >
                                     {s.icon}
@@ -259,7 +274,7 @@ const HeaderNavbar = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </header>
 
             {/* Modals */}
             <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />

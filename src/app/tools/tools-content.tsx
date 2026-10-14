@@ -227,9 +227,14 @@ const ToolsPage = () => {
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="flex flex-col items-center justify-center pt-24 pb-12 px-4 text-center">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-6 text-primary tracking-tight" style={{ fontFamily: "Georgia, serif" }}>Free AI Tools</h1>
-                <p className="text-sm sm:text-lg text-secondary max-w-2xl mx-auto flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center justify-center pt-20 pb-10 px-4 text-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-xs font-medium text-primary mb-4 tracking-wider uppercase">
+                    <Zap className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+                    <span>Curated AI Directory</span>
+                </div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-4 text-primary tracking-tight">Free AI Tools</h1>
+                <div className="w-16 h-1 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full mb-5" />
+                <p className="text-sm sm:text-base text-secondary max-w-xl mx-auto flex flex-col items-center gap-4 font-sans leading-relaxed">
                     <span>Discover, compare and review the best AI tools for productivity, design, coding, video and more — all free to explore.</span>
                     <span className="inline-flex items-center bg-blue-600 text-white text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full shadow-sm">
                         <Settings className="w-4 h-4 mr-1.5" /> Machine Learning & Artificial Intelligence
@@ -237,15 +242,15 @@ const ToolsPage = () => {
                 </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-16 px-4 max-w-4xl mx-auto">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-14 px-4 w-[88%] max-w-[860px] mx-auto">
                 {tabsList.map((tab) => (
                     <button 
                         key={tab} 
                         onClick={() => setActiveTab(tab)}
-                        className={`px-5 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 shadow-sm transition-colors ${
+                        className={`min-h-[44px] px-5 py-2.5 rounded-full font-medium text-xs sm:text-sm flex items-center gap-2 transition-all duration-200 ${
                             activeTab === tab 
-                            ? "bg-yellow-500 text-white" 
-                            : "text-secondary hover:text-primary bg-transparent"
+                            ? "bg-yellow-500 text-white shadow-md scale-105" 
+                            : "text-secondary hover:text-primary bg-card/60 border border-primary/10 hover:bg-primary/5"
                         }`}
                     >
                         {tab === 'Web Builders' && <LayoutGrid size={16} />}
@@ -259,7 +264,7 @@ const ToolsPage = () => {
                 ))}
             </div>
 
-            <div className="w-full max-w-6xl mx-auto px-4 sm:px-7 pb-16 flex flex-col gap-16">
+            <div className="w-[88%] max-w-[860px] mx-auto px-4 sm:px-6 pb-16 flex flex-col gap-14">
                 {categories.filter(c => c.title === activeTab).map((category) => (
                     <div key={category.title} className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                         <div className="flex items-center justify-between mb-8 border-b border-primary/5 pb-4">

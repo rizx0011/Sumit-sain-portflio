@@ -18,16 +18,23 @@ export default function BranchAnimation() {
     const animRef = useRef<number>(0);
 
     useEffect(() => {
+        const getFullHeight = () =>
+            Math.max(
+                document.body.scrollHeight,
+                document.documentElement.scrollHeight,
+                window.innerHeight
+            );
+
         let lastWidth = window.innerWidth;
-        let lastHeight = window.innerHeight;
+        let lastHeight = getFullHeight();
 
         setSize({ width: lastWidth, height: lastHeight });
 
         const handleResize = () => {
             const w = window.innerWidth;
-            const h = window.innerHeight;
-            
-            if (Math.abs(w - lastWidth) > 50 || Math.abs(h - lastHeight) > 50) {
+            const h = getFullHeight();
+
+            if (Math.abs(w - lastWidth) > 50 || Math.abs(h - lastHeight) > 100) {
                 lastWidth = w;
                 lastHeight = h;
                 setSize({ width: w, height: h });
@@ -36,8 +43,13 @@ export default function BranchAnimation() {
 
         window.addEventListener("resize", handleResize);
 
+        // Also watch for DOM size changes (sections loading in)
+        const ro = new ResizeObserver(handleResize);
+        ro.observe(document.body);
+
         return () => {
             window.removeEventListener("resize", handleResize);
+            ro.disconnect();
         };
     }, []);
 
@@ -171,8 +183,9 @@ export default function BranchAnimation() {
     }, [size]);
 
     return (
-        <div 
-            className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden" 
+        <div
+            className="absolute top-0 left-0 w-full pointer-events-none z-[-1] overflow-hidden"
+            style={{ height: size.height }}
         >
             <canvas ref={canvasRef} className="w-full h-full" />
         </div>

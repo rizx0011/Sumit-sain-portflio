@@ -45,33 +45,32 @@ const HeroSection = () => {
     }, []);
 
     return (
-        <section className="pt-0! pb-6! md:pb-8!">
+        <section className="pt-0! pb-5! md:pb-8!">
             <div className="container">
-                <div className="max-w-5xl mx-auto px-4 sm:px-7">
+                <div className="max-w-[860px] mx-auto">
 
-                    {/* ── Banner image (rounded, contained) ── */}
+                    {/* ── Banner image (rounded, cropped bottom to completely remove watermark) ── */}
                     <div className="relative">
-                        <div className="w-full h-52 sm:h-64 md:h-[290px] rounded-2xl overflow-hidden shadow-sm bg-muted">
+                        <div className="w-full h-40 sm:h-52 md:h-[220px] rounded-3xl overflow-hidden shadow-sm bg-muted border border-primary/5 relative">
                             <Image
                                 src="/images/hero-sec/rizx.gif"
-                                alt="Sumit Sain - Full Stack Developer & WordPress Expert portfolio banner"
+                                alt="Full Stack Developer & WordPress Expert portfolio banner"
                                 width={1024}
-                                height={290}
+                                height={280}
                                 sizes="(max-width: 1024px) 100vw, 1024px"
-                                className="w-full object-cover object-top"
-                                style={{ height: "115%", marginTop: 0 }}
+                                className="w-full h-auto min-h-full object-cover object-top -mb-8 scale-[1.03] origin-top"
                                 priority
                             />
                         </div>
 
                         {/* ── Circular profile photo overlapping bottom-left ── */}
-                        <div className="absolute -bottom-[52px] left-5 sm:left-7">
-                            <div className="relative w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] rounded-full border-4 border-background shadow-md overflow-hidden bg-background">
+                        <div className="absolute -bottom-[45px] sm:-bottom-[52px] left-4 sm:left-7">
+                            <div className="relative w-[90px] h-[90px] sm:w-[115px] sm:h-[115px] rounded-full border-4 border-background shadow-md overflow-hidden bg-background">
                                 <Image
                                     src={profileImages[currentIdx]}
                                     alt="Sumit Sain"
                                     fill
-                                    sizes="120px"
+                                    sizes="115px"
                                     priority
                                     className="object-cover transition-opacity duration-500"
                                     style={{ opacity: fading ? 0 : 1, objectPosition: "50% 15%" }}
@@ -80,7 +79,7 @@ const HeroSection = () => {
                                     src={profileImages[nextIdx]}
                                     alt="Sumit Sain Full Stack Developer profile photo"
                                     fill
-                                    sizes="120px"
+                                    sizes="115px"
                                     className="object-cover absolute inset-0"
                                     style={{ opacity: fading ? 1 : 0, transition: "opacity 500ms", objectPosition: "50% 15%" }}
                                 />
@@ -89,33 +88,33 @@ const HeroSection = () => {
                     </div>
 
                     {/* ── Info block below banner ── */}
-                    <div className="pt-[68px] sm:pt-[80px] pb-2 px-1">
+                    <div className="pt-[58px] sm:pt-[72px] pb-2 px-1">
 
                         {/* Name row */}
                         <div className="flex flex-wrap items-center gap-2 mb-1">
-                            <h1 className="font-instrument italic text-3xl sm:text-4xl md:text-[42px] font-normal leading-tight tracking-tight text-primary">
+                            <h1 className="font-serif italic text-2xl sm:text-3xl md:text-[38px] font-normal leading-tight tracking-tight text-primary">
                                 Sumit Sain
                             </h1>
-                            <BadgeCheck className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500 fill-blue-500 flex-shrink-0" style={{ fill: '#3b82f6' }} />
-                            <span className="text-secondary/40 font-light text-lg select-none">•</span>
-                            <span className="flex items-center gap-1.5 font-jost text-sm text-secondary/70">
-                                <MapPin size={14} className="text-secondary/50" />
-                                I am from Hanumangarh (Rajasthan)
+                            <BadgeCheck className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 fill-blue-500 flex-shrink-0" style={{ fill: '#3b82f6' }} />
+                            <span className="text-secondary/40 font-light text-base select-none">•</span>
+                            <span className="flex items-center gap-1.5 font-sans text-xs sm:text-sm text-secondary/80">
+                                <MapPin size={13} className="text-secondary/60" />
+                                Hanumangarh (Rajasthan), India
                             </span>
                         </div>
 
                         {/* Role / Current badge (Interactive hover switch) */}
-                        <div className="flex items-center gap-2 mt-3 mb-8">
+                        <div className="flex items-center gap-2 mt-3 mb-6">
                             <a
                                 href="https://zenviqdigital.in"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 title="Visit ZENVIQ Digital"
-                                className="group relative inline-flex items-center gap-2 border border-primary/10 hover:border-primary/25 rounded-full px-3.5 py-1.5 bg-background hover:bg-primary/5 transition-all duration-300 shadow-sm cursor-pointer overflow-hidden"
+                                className="group relative inline-flex items-center gap-2 border border-primary/10 hover:border-primary/25 rounded-full px-3.5 py-1.5 bg-background hover:bg-primary/5 transition-all duration-300 shadow-xs cursor-pointer overflow-hidden min-h-[36px]"
                             >
                                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
                                 
-                                <span className="relative flex items-center h-5 overflow-hidden font-jost text-xs font-semibold tracking-wide">
+                                <span className="relative flex items-center h-5 overflow-hidden font-sans text-xs font-semibold tracking-wide">
                                     {/* Default state: Currently at ZENVIQ */}
                                     <span className="inline-flex items-center gap-1 text-secondary/85 transition-all duration-300 ease-out group-hover:-translate-y-full group-hover:opacity-0 whitespace-nowrap">
                                         <span>Currently at</span>
@@ -133,17 +132,17 @@ const HeroSection = () => {
                         </div>
 
                         {/* Big headline */}
-                        <div className="mb-5">
-                            <h2 className="font-instrument italic text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal leading-[1.1] tracking-tight text-primary">
+                        <div className="mb-4">
+                            <h2 className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-normal leading-[1.12] tracking-tight text-primary">
                                 I build websites that
                             </h2>
-                            <h2 className="font-instrument text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal leading-[1.1] tracking-tight text-secondary/40">
+                            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-normal leading-[1.12] tracking-tight text-secondary/40">
                                 bring you clients.
                             </h2>
                         </div>
 
                         {/* Sub-text */}
-                        <p className="font-inter text-sm sm:text-base text-secondary leading-relaxed max-w-[580px] mb-8">
+                        <p className="font-sans text-sm sm:text-base text-secondary leading-relaxed max-w-[580px] mb-7">
                             Full Stack Developer &amp; WordPress Expert with a passion for building fast, beautiful, and scalable web experiences that help businesses grow online.
                         </p>
 
@@ -153,10 +152,10 @@ const HeroSection = () => {
                                 href={SITE_CONFIG.whatsapp}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 font-jost text-xs font-semibold uppercase tracking-[1.5px] bg-primary text-primary-foreground px-6 py-3.5 rounded-full hover:bg-primary/85 transition-all duration-200 shadow-sm hover:shadow-md"
+                                className="inline-flex items-center justify-center gap-2 font-sans text-xs font-semibold uppercase tracking-[1.5px] bg-primary text-primary-foreground px-6 py-3.5 rounded-full hover:bg-primary/85 transition-all duration-200 shadow-sm hover:shadow-md min-h-[44px]"
                             >
                                 <MessageCircle size={15} className="text-emerald-400" />
-                                Chat on WhatsApp
+                                <span>Chat on WhatsApp</span>
                             </a>
                             {hasResume && (
                                 <a
@@ -164,10 +163,10 @@ const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     download
-                                    className="inline-flex items-center gap-1.5 font-jost text-xs font-semibold uppercase tracking-[1.2px] text-secondary hover:text-primary transition-colors py-2 px-3 border border-primary/10 rounded-full hover:bg-primary/5"
+                                    className="inline-flex items-center justify-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-[1.2px] text-secondary hover:text-primary transition-colors py-2.5 px-4 border border-primary/10 rounded-full hover:bg-primary/5 min-h-[44px]"
                                 >
                                     <FileDown size={14} />
-                                    Download Resume
+                                    <span>Download Resume</span>
                                 </a>
                             )}
                         </div>

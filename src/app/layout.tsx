@@ -1,30 +1,31 @@
-import type { Metadata } from "next";
-import { Inter, Jost, Instrument_Serif } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Poppins } from "next/font/google";
 
 import "./globals.css";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import BranchAnimation from "./components/branch-animation";
 
-const inter = Inter({
-  variable: "--font-inter",
+const playfair = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
-});
-
-const jost = Jost({
-  variable: "--font-jost",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+});
+
+const poppins = Poppins({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sumitsain.vercel.app"),
@@ -70,11 +71,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="color-scheme" content="light dark" />
       </head>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${jost.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${playfair.variable} ${poppins.variable} antialiased`}
       >
         <script
           type="application/ld+json"
@@ -119,10 +121,10 @@ export default function RootLayout({
             }),
           }}
         />
-        <BranchAnimation />
-        <div style={{ position: "relative", zIndex: 1 }}>
+        <div style={{ position: "relative", zIndex: 1, overflow: "hidden" }}>
+          <BranchAnimation />
           <Header />
-          <div className="pt-[64px] sm:pt-[72px]">
+          <div className="pt-[54px] sm:pt-[60px]">
             {children}
           </div>
           <Footer />

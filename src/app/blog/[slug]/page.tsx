@@ -27,71 +27,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background py-24 sm:py-32 relative overflow-hidden">
+    <main className="min-h-screen bg-background py-20 sm:py-28 relative overflow-hidden">
       {/* Background gradients */}
-      <div className="absolute top-0 right-0 w-full max-w-2xl h-[400px] bg-primary/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-full max-w-2xl h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="container relative z-10 px-4 sm:px-6 mx-auto max-w-4xl">
-        {/* Back Button */}
-        <Button asChild variant="ghost" className="mb-10 rounded-full hover:bg-primary/5 text-secondary hover:text-primary transition-colors">
-          <Link href="/blog" className="inline-flex items-center gap-2">
-            <ArrowLeft size={16} />
-            <span>Back to Blog Hub</span>
-          </Link>
-        </Button>
+      {/* Clean reading container: ~700px max width as per PRD */}
+      <div className="w-[90%] max-w-[720px] mx-auto px-4 relative z-10">
+        {/* Back Button with min 44px tap target */}
+        <div className="mb-8">
+          <Button asChild variant="ghost" className="min-h-[44px] px-4 rounded-full hover:bg-primary/5 text-secondary hover:text-primary transition-colors">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-sans">
+              <ArrowLeft size={16} />
+              <span>Back to all articles</span>
+            </Link>
+          </Button>
+        </div>
 
         {/* Article Header */}
-        <header className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          <div className="flex items-center gap-4 text-sm font-medium text-secondary mb-6">
-            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full">
+        <header className="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-sans text-secondary mb-5">
+            <span className="px-3 py-1 bg-primary/10 text-primary rounded-full font-medium">
               {post.category}
             </span>
+            <span className="text-primary/20">•</span>
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4" />
-              {post.date}
+              <Calendar className="w-3.5 h-3.5 text-secondary" />
+              <span>{post.date}</span>
             </div>
+            <span className="text-primary/20">•</span>
             <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4" />
-              {post.readTime}
+              <Clock className="w-3.5 h-3.5 text-secondary" />
+              <span>{post.readTime}</span>
             </div>
           </div>
           
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-primary tracking-tight leading-tight mb-8" style={{ fontFamily: "Georgia, serif" }}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-serif text-primary tracking-tight leading-[1.25] mb-6">
             {post.title}
           </h1>
 
-          <div className="relative w-full h-[300px] sm:h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-primary/10">
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mb-8" />
+
+          <div className="relative w-full h-[240px] sm:h-[360px] md:h-[400px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-primary/10 bg-primary/5">
             <Image
               src={post.thumbnail}
               alt={post.title}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 720px"
               priority
             />
           </div>
         </header>
 
-        {/* Article Content */}
-        <article className="prose prose-lg dark:prose-invert max-w-none text-secondary animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
+        {/* Article Content with relaxed line-height (1.7-1.8) */}
+        <article className="font-sans text-secondary/90 leading-[1.8] sm:leading-[1.85] text-base sm:text-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
           <div 
             dangerouslySetInnerHTML={{ __html: post.content }}
-            className="[&>h2]:text-2xl [&>h2]:sm:text-3xl [&>h2]:font-bold [&>h2]:text-primary [&>h2]:mt-12 [&>h2]:mb-6 [&>p]:text-base [&>p]:sm:text-lg [&>p]:leading-relaxed [&>p]:mb-6 [&>p>code]:bg-primary/10 [&>p>code]:text-primary [&>p>code]:px-1.5 [&>p>code]:py-0.5 [&>p>code]:rounded-md [&>p>code]:text-sm"
+            className="[&>h2]:text-xl [&>h2]:sm:text-2xl [&>h2]:font-serif [&>h2]:text-primary [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight [&>p]:mb-6 [&>p]:leading-[1.8] [&>p>code]:bg-primary/10 [&>p>code]:text-primary [&>p>code]:px-1.5 [&>p>code]:py-0.5 [&>p>code]:rounded-md [&>p>code]:text-sm"
           />
         </article>
 
         {/* Article Footer */}
-        <div className="mt-16 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-xl font-serif shadow-md">
+        <div className="mt-14 pt-8 border-t border-primary/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3.5">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-lg font-serif font-bold shadow-md">
               S
             </div>
             <div>
-              <p className="text-sm font-bold text-primary">Sumit Kumar</p>
-              <p className="text-xs text-secondary">Author</p>
+              <p className="text-sm font-bold text-primary font-serif">Sumit Sain</p>
+              <p className="text-xs text-secondary font-sans">Full Stack Developer & Writer</p>
             </div>
           </div>
-          <Button asChild variant="outline" className="rounded-full">
-            <Link href="/blog">Read More Articles</Link>
+          <Button asChild variant="outline" className="min-h-[44px] px-6 rounded-full font-sans">
+            <Link href="/blog">Browse More Articles</Link>
           </Button>
         </div>
       </div>

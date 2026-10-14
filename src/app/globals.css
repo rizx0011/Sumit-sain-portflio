@@ -48,60 +48,115 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  max-width: 100vw;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
 }
 
 @theme {
   --breakpoint-xs: 500px;
-  --font-sans: var(--font-jost), var(--font-inter), sans-serif;
-  --font-serif: var(--font-instrument-serif), serif;
-  --font-jost: var(--font-jost), sans-serif;
-  --font-instrument: var(--font-instrument-serif), serif;
-  --font-inter: var(--font-inter), sans-serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-jost: var(--font-sans), system-ui, sans-serif;
+  --font-instrument: var(--font-serif), Georgia, serif;
+  --font-inter: var(--font-sans), system-ui, sans-serif;
 }
 
 @layer utilities {
   .container {
-    @apply w-full max-w-[70.9rem] mx-auto mt-0 mb-0 py-0 sm:px-7 px-5;
+    width: 88% !important;
+    max-width: 860px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (max-width: 640px) {
+    .container {
+      width: 92% !important;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
 
 @layer base {
   section {
-    @apply py-6 md:py-10 relative overflow-hidden;
+    @apply py-8 sm:py-12 md:py-16 relative overflow-hidden;
   }
 
   h1 {
-    @apply text-xl sm:text-3xl md:text-4xl lg:text-[42px] font-instrument font-normal text-primary tracking-tight leading-tight;
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    font-weight: 400;
   }
 
   h2 {
-    @apply text-lg sm:text-2xl md:text-3xl lg:text-[32px] font-instrument font-normal text-primary tracking-tight leading-snug;
+    font-family: var(--font-serif), Georgia, serif;
+    font-size: clamp(1.65rem, 3.8vw, 2.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--primary);
+    font-weight: 400;
   }
 
   h3 {
-    @apply text-base sm:text-lg md:text-2xl font-jost font-semibold text-primary tracking-tight;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--primary);
+    font-weight: 600;
   }
 
   h4 {
-    @apply text-sm sm:text-base md:text-xl font-jost font-semibold text-primary;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.4;
+    color: var(--primary);
+    font-weight: 600;
   }
 
   h5 {
-    @apply text-xs sm:text-sm md:text-lg font-jost font-medium text-primary;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+    color: var(--primary);
+    font-weight: 500;
   }
 
   h6 {
-    @apply text-[11px] sm:text-xs md:text-base font-jost font-normal text-primary;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    color: var(--primary);
+    font-weight: 500;
   }
 
   p {
-    @apply text-[13px] sm:text-sm md:text-base font-inter font-normal text-secondary leading-relaxed;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    color: var(--secondary);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  button, a.button, input[type="submit"], [role="button"] {
+    min-height: 44px;
   }
 }
 

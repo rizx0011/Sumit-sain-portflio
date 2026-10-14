@@ -78,14 +78,6 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
             action: () => handleScroll("experience")
         },
         {
-            id: "nav-services",
-            title: "Services Offered",
-            description: "Skills and technologies Sumit specializes in",
-            category: "Navigation",
-            icon: <Globe className="w-4.5 h-4.5 text-secondary" />,
-            action: () => handleScroll("services")
-        },
-        {
             id: "nav-projects",
             title: "Featured Projects",
             description: "Browse major and minor side projects",
@@ -97,7 +89,7 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
         {
             id: "page-tools",
             title: "Free Tools Page",
-            description: "Browse 10 free tools built for the community",
+            description: "Browse curated free tools for productivity, AI & code",
             category: "Pages",
             icon: <Terminal className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
@@ -107,13 +99,13 @@ const CommandPalette: React.FC<CommandPaletteProps> = ({
         },
         {
             id: "page-blog",
-            title: "BCA & AI Tech Blog",
-            description: "Read about benefits of BCA and Future of AI in Tech",
+            title: "Blog & Articles",
+            description: "Read articles on web development, tech insights & frameworks",
             category: "Pages",
             icon: <BookOpen className="w-4.5 h-4.5 text-secondary" />,
             action: () => {
                 onClose();
-                router.push("/education-blog");
+                router.push("/blog");
             }
         },
         // Projects

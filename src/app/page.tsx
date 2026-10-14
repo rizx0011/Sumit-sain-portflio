@@ -1,9 +1,7 @@
 import HeroSection from "./components/home/hero-section";
 import AboutMe from "./components/home/about-me";
 import Experience from "./components/home/experience";
-
 import StatsStrip from "./components/home/stats-strip";
-import Services from "./components/home/services";
 import FeaturedWork from "./components/home/featured-work";
 import HowIWork from "./components/home/how-i-work";
 import Pricing from "./components/home/pricing";
@@ -20,13 +18,11 @@ import { Reveal } from "@/components/ui/reveal";
 
 const Page = () => {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <HeroSection />
       <Reveal><AboutMe /></Reveal>
       <Reveal><Experience /></Reveal>
-
       <Reveal><StatsStrip /></Reveal>
-      <Reveal><Services /></Reveal>
       <Reveal><FeaturedWork initialLimit={4} /></Reveal>
       <Reveal><HowIWork /></Reveal>
       <Reveal><Pricing /></Reveal>

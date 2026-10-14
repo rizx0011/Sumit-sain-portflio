@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 const XIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
@@ -43,14 +44,37 @@ const socials = [
     },
 ];
 
+const footerNav = [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/#about" },
+    { label: "Work", href: "/#work" },
+    { label: "Process", href: "/#process" },
+    { label: "Tools", href: "/tools" },
+    { label: "Blog", href: "/blog" },
+    { label: "Contact", href: "/#contact" },
+];
+
 const Footer = () => {
     return (
-        <footer className="bg-background border-t border-primary/5">
-            <div className="container">
-                <div className="flex flex-col items-center gap-5 px-4 sm:px-7 py-10 md:py-12">
+        <footer className="bg-background border-t border-primary/5 py-5 md:py-7">
+            <div className="container mx-auto">
+                <div className="flex flex-col items-center gap-4 px-4 text-center">
+
+                    {/* Navigation links (including Blog, no Services) */}
+                    <nav className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
+                        {footerNav.map((link) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                className="font-sans text-xs sm:text-sm font-semibold text-secondary hover:text-primary px-3 py-2 rounded-full hover:bg-primary/5 transition-all min-h-[44px] flex items-center"
+                            >
+                                {link.label}
+                            </Link>
+                        ))}
+                    </nav>
 
                     {/* Social icons row */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3">
                         {socials.map((s) => (
                             <a
                                 key={s.label}
@@ -58,16 +82,18 @@ const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={s.label}
-                                className="p-2.5 rounded-xl text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 [&>svg]:!w-6 [&>svg]:!h-6"
+                                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center text-primary/80 hover:text-primary hover:bg-primary/10 transition-all duration-200 border border-primary/5"
                             >
                                 {s.icon}
                             </a>
                         ))}
                     </div>
 
+                    <div className="w-full max-w-sm h-px bg-primary/5" />
+
                     {/* Copyright */}
-                    <p className="font-jost text-[13px] font-medium text-secondary/90 text-center tracking-wide mt-2">
-                        © 2026 Sumit Sain. All rights reserved.
+                    <p className="font-sans text-xs font-normal text-secondary/80 text-center tracking-wide">
+                        © 2026. All rights reserved.
                     </p>
 
                 </div>

@@ -97,16 +97,18 @@ const Contact = () => {
   return (
     <section id="contact" className="py-6 md:py-10">
       <div className="container relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-7">
+        <div className="max-w-[860px] mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-2 mb-8">
-            <p className="font-jost uppercase tracking-[3px] text-xs sm:text-sm font-semibold text-secondary/60">
-              Get in Touch
-            </p>
-            <h2 className="font-instrument text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
-              Let&apos;s Discuss <span className="font-serif italic text-primary">Your Project</span>
+            <div className="flex items-center gap-2 font-sans uppercase tracking-[2.5px] text-xs font-semibold text-secondary/70">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              <span>Get in Touch</span>
+            </div>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-primary font-normal leading-tight">
+              Let&apos;s Discuss <span className="italic text-primary">Your Project</span>
             </h2>
-            <p className="font-inter text-sm sm:text-base text-secondary leading-relaxed mt-1">
+            <span className="block w-10 h-[2px] bg-primary/20 rounded-full mt-2" />
+            <p className="font-sans text-sm sm:text-base text-secondary leading-relaxed mt-1">
               Have an idea, need a quote, or want to discuss a new website? Send a message or chat on WhatsApp.
             </p>
           </div>
@@ -118,16 +120,16 @@ const Contact = () => {
                 href={SITE_CONFIG.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-card rounded-2xl p-5 border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:border-primary/20 transition-all flex items-start gap-3.5 group block"
+                className="bg-card rounded-3xl p-5 border border-primary/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.2)] hover:border-primary/20 hover:-translate-y-0.5 transition-all flex items-start gap-3.5 group block min-h-[44px]"
               >
-                <div className="p-2.5 bg-emerald-500/10 rounded-xl text-emerald-500 flex-shrink-0 group-hover:scale-105 transition-transform">
+                <div className="p-2.5 bg-emerald-500/10 rounded-2xl text-emerald-500 flex-shrink-0 group-hover:scale-105 transition-transform">
                   <MessageCircle size={20} />
                 </div>
                 <div>
-                  <h3 className="font-jost text-xs uppercase tracking-wider font-semibold text-secondary/70">
+                  <h3 className="font-sans text-xs uppercase tracking-wider font-semibold text-secondary/70">
                     WhatsApp
                   </h3>
-                  <p className="font-jost text-sm font-medium text-primary mt-0.5">
+                  <p className="font-sans text-sm font-medium text-primary mt-0.5">
                     +91 96497 32195
                   </p>
                   <span className="text-[11px] text-emerald-500 font-medium">Quick reply</span>
@@ -136,16 +138,16 @@ const Contact = () => {
 
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
-                className="bg-card rounded-2xl p-5 border border-primary/5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:border-primary/20 transition-all flex items-start gap-3.5 group block"
+                className="bg-card rounded-3xl p-5 border border-primary/5 shadow-[0_4px_24px_-4px_rgba(0,0,0,0.03)] dark:shadow-[0_4px_24px_-4px_rgba(0,0,0,0.2)] hover:border-primary/20 hover:-translate-y-0.5 transition-all flex items-center gap-3.5 group block min-h-[44px] overflow-hidden"
               >
-                <div className="p-2.5 bg-primary/5 rounded-xl text-primary flex-shrink-0 group-hover:scale-105 transition-transform">
+                <div className="p-2.5 bg-primary/5 rounded-2xl text-primary flex-shrink-0 group-hover:scale-105 transition-transform">
                   <Mail size={20} />
                 </div>
-                <div>
-                  <h3 className="font-jost text-xs uppercase tracking-wider font-semibold text-secondary/70">
+                <div className="min-w-0 flex-1 overflow-hidden">
+                  <h3 className="font-sans text-xs uppercase tracking-wider font-semibold text-secondary/70">
                     Email
                   </h3>
-                  <p className="font-jost text-xs sm:text-sm font-medium text-primary mt-0.5 break-all">
+                  <p className="font-sans text-[11px] font-medium text-primary mt-0.5 truncate">
                     {SITE_CONFIG.email}
                   </p>
                 </div>
@@ -273,7 +275,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-3 px-6 rounded-full font-jost text-xs font-semibold uppercase tracking-[1.5px] bg-primary text-primary-foreground hover:bg-primary/85 transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+                    className="w-full min-h-[44px] py-3.5 px-6 rounded-full font-sans text-xs font-semibold uppercase tracking-[1.5px] bg-primary text-primary-foreground hover:bg-primary/85 transition-all duration-200 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
                   >
                     {loading ? (
                       <>

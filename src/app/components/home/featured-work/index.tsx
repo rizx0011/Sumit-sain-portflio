@@ -159,6 +159,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                 </span>
                             </div>
                         </div>
+                        <span className="block w-10 h-[2px] bg-primary/20 rounded-full my-3" />
 
                         <p className="featured-work-desc">
                             A curated collection of shipping web applications, experiments, and digital craftsmanship.
@@ -394,7 +395,8 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     pointer-events: none;
                 }
                 .featured-work-inner {
-                    max-width: 1024px;
+                    max-width: 860px;
+                    width: 100%;
                     margin: 0 auto;
                     padding: 0 16px;
                     position: relative;
@@ -409,7 +411,8 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     font-size: 13px;
                     color: var(--secondary, #71717a);
                     text-decoration: none;
-                    padding: 5px 12px;
+                    padding: 8px 16px;
+                    min-height: 44px;
                     border-radius: 9999px;
                     background: rgba(0,0,0,0.03);
                     border: 1px solid rgba(0,0,0,0.08);
@@ -450,7 +453,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     letter-spacing: 2.5px;
                     color: var(--secondary, #71717a);
                     font-weight: 600;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    font-family: var(--font-sans), sans-serif;
                 }
                 .featured-work-title-row {
                     display: flex;
@@ -459,13 +462,13 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     margin-bottom: 12px;
                 }
                 .featured-work-heading {
-                    font-size: clamp(36px, 5vw, 62px);
-                    font-weight: 700;
-                    line-height: 1.05;
+                    font-size: clamp(30px, 4.2vw, 48px);
+                    font-weight: 400;
+                    line-height: 1.15;
                     color: var(--primary, #09090b);
                     margin: 0;
-                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                    letter-spacing: -0.03em;
+                    font-family: var(--font-serif), Georgia, serif;
+                    letter-spacing: -0.02em;
                 }
                 :global(.dark) .featured-work-heading {
                     color: #ffffff;
@@ -474,14 +477,15 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                     font-style: italic;
                     font-weight: 400;
                     color: var(--primary, #09090b);
-                    font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+                    font-family: var(--font-serif), Georgia, serif;
                 }
                 :global(.dark) .heading-italic {
                     color: #e5e7eb;
                 }
                 .heading-regular {
                     color: #888888;
-                    font-weight: 600;
+                    font-weight: 400;
+                    font-family: var(--font-serif), Georgia, serif;
                 }
                 .total-works {
                     display: flex;
