@@ -1,21 +1,54 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { blogPosts } from '../data';
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { blogPosts } from "../data";
 
 interface BlogPostPageProps {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
+  return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    return { title: "Post Not Found" };
+  }
+
+  const BASE_URL = "https://sumitsain.vercel.app";
+  const canonical = `${BASE_URL}/blog/${post.slug}`;
+  const description = post.excerpt.slice(0, 160);
+
+  return {
+    title: post.title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title: post.title,
+      description,
+      url: canonical,
+      siteName: "Sumit Sain",
+      images: [{ url: post.thumbnail, width: 800, height: 450, alt: post.title }],
+      type: "article",
+      publishedTime: new Date(post.date).toISOString(),
+      authors: ["Sumit Sain"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: [post.thumbnail],
+      creator: "@sumitsxin01",
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -26,14 +59,53 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const BASE_URL = "https://sumitsain.vercel.app";
+
+  const blogPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.thumbnail,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    author: {
+      "@type": "Person",
+      name: "Sumit Sain",
+      url: BASE_URL,
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Sumit Sain",
+      url: BASE_URL,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/blog/${post.slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE_URL}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: `${BASE_URL}/blog/${post.slug}` },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-background py-20 sm:py-28 relative overflow-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+
       {/* Background gradients */}
       <div className="absolute top-0 right-0 w-full max-w-2xl h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Clean reading container: ~700px max width as per PRD */}
+      {/* Clean reading container */}
       <div className="w-[90%] max-w-[720px] mx-auto px-4 relative z-10">
-        {/* Back Button with min 44px tap target */}
+        {/* Back Button */}
         <div className="mb-8">
           <Button asChild variant="ghost" className="min-h-[44px] px-4 rounded-full hover:bg-primary/5 text-secondary hover:text-primary transition-colors">
             <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-sans">
@@ -60,7 +132,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>{post.readTime}</span>
             </div>
           </div>
-          
+
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-serif text-primary tracking-tight leading-[1.25] mb-6">
             {post.title}
           </h1>
@@ -79,9 +151,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </header>
 
-        {/* Article Content with relaxed line-height (1.7-1.8) */}
+        {/* Article Content */}
         <article className="font-sans text-secondary/90 leading-[1.8] sm:leading-[1.85] text-base sm:text-lg animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-          <div 
+          <div
             dangerouslySetInnerHTML={{ __html: post.content }}
             className="[&>h2]:text-xl [&>h2]:sm:text-2xl [&>h2]:font-serif [&>h2]:text-primary [&>h2]:mt-10 [&>h2]:mb-4 [&>h2]:tracking-tight [&>p]:mb-6 [&>p]:leading-[1.8] [&>p>code]:bg-primary/10 [&>p>code]:text-primary [&>p>code]:px-1.5 [&>p>code]:py-0.5 [&>p>code]:rounded-md [&>p>code]:text-sm"
           />

@@ -7,7 +7,7 @@ export const SITE_CONFIG = {
   tagline: "Full Stack Developer & WordPress Expert",
   url: "https://sumitsain.vercel.app",
   location: "Rajasthan, India",
-  email: "sumitsain13698@email.com",
+  email: "sumitsain13698@gmail.com",
   whatsapp: "https://wa.me/919649732195?text=Hi%20Sumit%2C%20I%20want%20a%20website",
   socials: {
     instagram: "https://instagram.com/sumitsxin01",

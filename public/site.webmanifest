@@ -1,0 +1,22 @@
+{
+  "name": "Sumit Sain",
+  "short_name": "Sumit Sain",
+  "description": "Full Stack Developer & WordPress Expert from Hanumangarh, Rajasthan, India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/images/logo/logo-round.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/hero-sec/sumit-profile-full.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+

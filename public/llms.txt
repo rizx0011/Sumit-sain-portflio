@@ -1,0 +1,40 @@
+# Sumit Sain – Full Stack Developer & WordPress Expert
+
+## Who I Am
+
+Sumit Sain is a Full Stack Developer and WordPress Expert based in Hanumangarh, Rajasthan, India. He is currently working at ZENVIQ Digital Agency (https://zenviqdigital.in) and pursuing a Bachelor of Computer Applications (BCA) from Maharaja Ganga Singh University, Bikaner.
+
+He specialises in building fast, SEO-friendly, and responsive websites for businesses, founders, and individuals across India and worldwide.
+
+## Services
+
+- Custom Next.js & React web applications
+- WordPress website development and customisation
+- Full stack web development (frontend + backend)
+- UI/UX implementation and design systems
+- Website performance optimisation and SEO
+
+## Tech Stack
+
+Next.js, React, TypeScript, Tailwind CSS, JavaScript, Node.js, WordPress, MySQL, PHP
+
+## Key URLs
+
+- Portfolio: https://sumitsain.vercel.app
+- Work / Projects: https://sumitsain.vercel.app/work
+- Blog: https://sumitsain.vercel.app/blog
+- Tools: https://sumitsain.vercel.app/tools
+
+## Contact
+
+- Email: sumitsain13698@gmail.com
+- WhatsApp: +91 96497 32195
+- LinkedIn: https://linkedin.com/in/sumit-sain
+- GitHub: https://github.com/sumitsxin01
+- Instagram: https://instagram.com/sumitsxin01
+- X (Twitter): https://x.com/sumitsxin01
+
+## Location
+
+Hanumangarh, Rajasthan, India (available for remote work worldwide)
+

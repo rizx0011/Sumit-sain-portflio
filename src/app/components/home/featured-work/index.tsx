@@ -297,12 +297,7 @@ const FeaturedWork = ({ showBackButton = false, initialLimit }: FeaturedWorkProp
                                             </button>
                                         </div>
 
-                                        {project.problem && (
-                                            <p className="text-xs text-secondary/85 mt-2.5 italic border-l-2 border-primary/20 pl-2.5 py-0.5 leading-relaxed">
-                                                <span className="font-semibold not-italic text-primary/90">Challenge & Solution: </span>
-                                                {project.problem}
-                                            </p>
-                                        )}
+                                        
 
                                         {/* Tech Stack Badges & Links */}
                                         <div className="flex items-center justify-between gap-3 mt-3 pt-2">

@@ -29,7 +29,7 @@ export const experiences: ExperienceEntry[] = [
     id: "bca",
     title: "Bachelor of Computer Applications (BCA)",
     role: "Undergraduate, Maharaja Ganga Singh University, Bikaner",
-    date: "Aug 2025 — Present",
+    date: "2024 — Present",
     description:
       "Pursuing a degree in computer applications while actively building real-world web projects.",
     logo: "/images/experience/mgsu.png",
@@ -44,7 +44,7 @@ export const experiences: ExperienceEntry[] = [
     id: "rscit",
     title: "RS-CIT",
     role: "Certificate Course, Rajasthan Knowledge Corporation Limited (RKCL)",
-    date: "[FILL YEAR]", // TODO: Set completion year e.g. "2023"
+    date: "2023",
     description:
       "Completed the RS-CIT computer literacy course covering core computer and IT fundamentals.",
     logo: "/images/experience/rscit.png",
@@ -59,7 +59,7 @@ export const experiences: ExperienceEntry[] = [
     id: "dexter-lab",
     title: "Dextor Lab, Hanumangarh",
     role: "Full Stack Development Course",
-    date: "[FILL YEAR]", // TODO: Set completion year e.g. "2024"
+    date: "2024",
     description:
       "Completed full stack web development training at Dexter Lab, Hanumangarh, learning front-end and back-end fundamentals through hands-on projects.",
     logo: "/images/experience/dexter-lab.png",

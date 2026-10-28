@@ -15,10 +15,29 @@ import FreeTools from "./components/home/free-tools";
 import BlogSection from "./components/home/blog-section";
 import QuoteSection from "./components/home/quote-section";
 import { Reveal } from "@/components/ui/reveal";
+import { faqs } from "@data/faq";
+
+// FAQPage + BreadcrumbList schema for the homepage
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
 
 const Page = () => {
   return (
     <main className="overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <HeroSection />
       <Reveal><AboutMe /></Reveal>
       <Reveal><Experience /></Reveal>

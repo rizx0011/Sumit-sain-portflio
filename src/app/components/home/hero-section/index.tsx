@@ -7,7 +7,7 @@ import { SITE_CONFIG } from "@data/config";
 
 // ─── Add more photo filenames here as you upload them to /public/images/hero-sec/
 const profileImages = [
-    "/images/hero-sec/user-img.jpg",
+    "/images/hero-sec/sumit-profile-full.jpg",
 ];
 
 const INTERVAL_MS = 3000;
@@ -64,31 +64,31 @@ const HeroSection = () => {
                         </div>
 
                         {/* ── Circular profile photo overlapping bottom-left ── */}
-                        <div className="absolute -bottom-[45px] sm:-bottom-[52px] left-4 sm:left-7">
-                            <div className="relative w-[90px] h-[90px] sm:w-[115px] sm:h-[115px] rounded-full border-4 border-background shadow-md overflow-hidden bg-background">
+                        <div className="absolute -bottom-[52px] sm:-bottom-[68px] left-4 sm:left-7">
+                            <div className="relative w-[105px] h-[105px] sm:w-[136px] sm:h-[136px] rounded-full border-4 border-background shadow-md overflow-hidden bg-background">
                                 <Image
                                     src={profileImages[currentIdx]}
                                     alt="Sumit Sain"
                                     fill
-                                    sizes="115px"
+                                    sizes="(max-width: 640px) 105px, 136px"
                                     priority
                                     className="object-cover transition-opacity duration-500"
-                                    style={{ opacity: fading ? 0 : 1, objectPosition: "50% 15%" }}
+                                    style={{ opacity: fading ? 0 : 1, objectPosition: "center" }}
                                 />
                                 <Image
                                     src={profileImages[nextIdx]}
                                     alt="Sumit Sain Full Stack Developer profile photo"
                                     fill
-                                    sizes="115px"
+                                    sizes="(max-width: 640px) 105px, 136px"
                                     className="object-cover absolute inset-0"
-                                    style={{ opacity: fading ? 1 : 0, transition: "opacity 500ms", objectPosition: "50% 15%" }}
+                                    style={{ opacity: fading ? 1 : 0, transition: "opacity 500ms", objectPosition: "center" }}
                                 />
                             </div>
                         </div>
                     </div>
 
                     {/* ── Info block below banner ── */}
-                    <div className="pt-[58px] sm:pt-[72px] pb-2 px-1">
+                    <div className="pt-[64px] sm:pt-[84px] pb-2 px-1">
 
                         {/* Name row */}
                         <div className="flex flex-wrap items-center gap-2 mb-1">

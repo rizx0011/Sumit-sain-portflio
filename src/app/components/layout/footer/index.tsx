@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const XIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-[18px] h-[18px]">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -44,34 +42,11 @@ const socials = [
     },
 ];
 
-const footerNav = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/#about" },
-    { label: "Work", href: "/#work" },
-    { label: "Process", href: "/#process" },
-    { label: "Tools", href: "/tools" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/#contact" },
-];
-
 const Footer = () => {
     return (
-        <footer className="bg-background border-t border-primary/5 py-5 md:py-7">
+        <footer className="bg-background border-t border-primary/5 py-6 md:py-8">
             <div className="container mx-auto">
                 <div className="flex flex-col items-center gap-4 px-4 text-center">
-
-                    {/* Navigation links (including Blog, no Services) */}
-                    <nav className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
-                        {footerNav.map((link) => (
-                            <Link
-                                key={link.label}
-                                href={link.href}
-                                className="font-sans text-xs sm:text-sm font-semibold text-secondary hover:text-primary px-3 py-2 rounded-full hover:bg-primary/5 transition-all min-h-[44px] flex items-center"
-                            >
-                                {link.label}
-                            </Link>
-                        ))}
-                    </nav>
 
                     {/* Social icons row */}
                     <div className="flex items-center gap-2 sm:gap-3">
@@ -93,7 +68,7 @@ const Footer = () => {
 
                     {/* Copyright */}
                     <p className="font-sans text-xs font-normal text-secondary/80 text-center tracking-wide">
-                        © 2026. All rights reserved.
+                        © 2026 Sumit Sain. Built with Next.js and Tailwind CSS.
                     </p>
 
                 </div>
